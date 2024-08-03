@@ -10,7 +10,7 @@
 class Date {
 
 public:
-    Date(int y=0,int m=0,int d=0);
+    explicit Date(int y=0,int m=0,int d=0);
 
     void setYear(int y);
     void setMonth(int m);
@@ -18,14 +18,16 @@ public:
 
 
 
+    //operators
 
+    bool operator==(const Date& orig) const;
+    bool operator<(const Date& orig) const;
 
 private:
 
     void setThirtyDay(int d);
     void setThirtyOneDay(int d);
     void setFebruaryDay(int d);
-
 
 
     int year=0;

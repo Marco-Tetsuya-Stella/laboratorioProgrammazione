@@ -11,7 +11,6 @@ Date::Date(int y, int m, int d) {
     setDay(d);
 }
 
-
 void Date::setYear(int y) {
     if(y<0) {
         std::cout << "Year is invalid a default parameter will be applied " << std::endl;
@@ -43,7 +42,7 @@ void Date::setDay(int d) {
     {
         switch (month) {
             case -1:
-                std::cout<<"Month is invalid a default parameter will be applied " << std::endl;
+                std::cout<<"Month is invalid a default parameter for day will be applied " << std::endl;
                 day=-1;
                 break;
             case 1:
@@ -98,7 +97,6 @@ void Date::setDay(int d) {
 }
 
 
-
 void Date::setThirtyOneDay(int d) {
     day=d;
 }
@@ -148,5 +146,40 @@ void Date::setFebruaryDay(int d) {
         }
     }
 }
+
+
+
+bool Date::operator==(const Date &orig) const {
+    return year==orig.year && month==orig.month && day==orig.day;
+}
+
+bool Date::operator<(const Date &orig) const {
+    bool result=false;
+
+    if(year < orig.year ){
+        result=true;
+    }
+    else
+    {
+       if(year == orig.year){
+           if(month < orig.month){
+               result=true;
+           }
+           else
+           {
+                if(month == orig.month){
+                    if(day<orig.day){
+                        result= true;
+                    }
+                }
+           }
+       }
+    }
+    return result;
+}
+
+
+
+
 
 
