@@ -10,9 +10,19 @@ class Time {
 public:
 
     explicit Time(int h=0, int m=0, int s=0);
+    //getter and setter
     void setHour(int h);
     void setMinute(int m);
     void setSecond(int s);
+
+    int getHour() const;
+    int getMinute() const;
+    int getSecond() const;
+
+    //functions
+    void show() const;
+
+
 
 private:
     int hour=0;

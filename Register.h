@@ -10,10 +10,10 @@
 #include "Activity.h"
 
 class Register {
-
+public:
+    //functions
     void insert(Activity& a);
-
-
+    void showDay(Date& d)const;
 
 
 private:

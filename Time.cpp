@@ -10,6 +10,8 @@ Time::Time(int h, int m, int s) {
     setSecond(s);
 }
 
+
+//getter and setter
 void Time::setHour(int h) {
     if( h<0 or h>24 ) {
         std::cout << "Hour is invalid a default parameter will be applied " << std::endl;
@@ -43,7 +45,24 @@ void Time::setSecond(int s) {
     }
 }
 
+int Time::getHour() const {
+    return hour;
+}
 
+int Time::getMinute() const {
+    return minute;
+}
+
+int Time::getSecond() const {
+    return second;
+}
+
+//functions
+void Time::show() const{
+    std::cout << "Hour : " << hour << std::endl
+              << "Minute : " << minute << std::endl
+              << "Second : " << second << std::endl;
+}
 
 
 

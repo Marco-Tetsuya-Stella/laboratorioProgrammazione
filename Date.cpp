@@ -96,7 +96,57 @@ void Date::setDay(int d) {
     }
 }
 
+int Date::getYear() const {
+    return year;
+}
 
+int Date::getMonth() const {
+    return month;
+}
+
+int Date::getDay() const {
+    return day;
+}
+
+//operators
+
+bool Date::operator==(const Date &orig) const {
+    return year==orig.year && month==orig.month && day==orig.day;
+}
+
+bool Date::operator<(const Date &orig) const {
+    bool result=false;
+
+    if(year < orig.year ){
+        result=true;
+    }
+    else
+    {
+        if(year == orig.year){
+            if(month < orig.month){
+                result=true;
+            }
+            else
+            {
+                if(month == orig.month){
+                    if(day<orig.day){
+                        result= true;
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}
+
+//functions
+void Date::show() const {
+    std::cout << "Year : " << year << std::endl
+              << "Month : " << month << std::endl
+              << "Day : " << day <<std::endl;
+}
+
+//private functions
 void Date::setThirtyOneDay(int d) {
     day=d;
 }
@@ -149,34 +199,8 @@ void Date::setFebruaryDay(int d) {
 
 
 
-bool Date::operator==(const Date &orig) const {
-    return year==orig.year && month==orig.month && day==orig.day;
-}
 
-bool Date::operator<(const Date &orig) const {
-    bool result=false;
 
-    if(year < orig.year ){
-        result=true;
-    }
-    else
-    {
-       if(year == orig.year){
-           if(month < orig.month){
-               result=true;
-           }
-           else
-           {
-                if(month == orig.month){
-                    if(day<orig.day){
-                        result= true;
-                    }
-                }
-           }
-       }
-    }
-    return result;
-}
 
 
 
