@@ -4,4 +4,6 @@ project(elaborato_laboratorio_di_programmazione)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(elaborato_laboratorio_di_programmazione main.cpp
-        Date.h)
+        Date.cpp
+        Date.h
+)
