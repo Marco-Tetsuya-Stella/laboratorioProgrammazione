@@ -10,4 +10,6 @@ add_executable(elaborato_laboratorio_di_programmazione main.cpp
         Activity.h
         Time.cpp
         Time.h
+        Register.cpp
+        Register.h
 )
