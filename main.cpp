@@ -4,7 +4,7 @@
 #include "Activity.h"
 #include "Register.h"
 
-
+/*
 int main() {
 
     Date d1(2013,3,10);
@@ -26,4 +26,4 @@ int main() {
     activities.showDay(d1);
 
 
-}
+}*/

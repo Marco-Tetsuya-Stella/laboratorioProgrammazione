@@ -22,8 +22,6 @@ public:
     //functions
     void show() const;
 
-
-
 private:
     int hour=0;
     int minute=0;
