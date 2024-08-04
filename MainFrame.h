@@ -6,20 +6,25 @@
 #define ELABORATO_LABORATORIO_DI_PROGRAMMAZIONE_MAINFRAME_H
 #include <wx/wx.h>
 #include <string>
-
+#include <wx/splitter.h>
 
 class MainFrame : public wxFrame{
 
 public:
     MainFrame(const wxString& title);
 
-
 private:
     void createControls();
+    void setSplitter();
+
+    wxFont* mainFont;
+    wxFont* panelFont;
 
 
-    wxStaticText* date;
-    wxPanel* panel;
+    wxPanel* leftPanel;
+    wxPanel* rightPanel;
+    wxSplitterWindow* splitter;
+
 
 };
 
