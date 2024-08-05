@@ -28,7 +28,7 @@ private:
 
 
     wxFont* mainFont;
-    wxFont* panelFont;
+    wxFont* rightPanelFont;
 
 
     wxPanel* leftPanel;
@@ -42,26 +42,48 @@ private:
     
     wxSplitterWindow* splitter;
 
-    wxTextCtrl* controlYearText;
-    wxTextCtrl* controlMonthText;
-    wxTextCtrl* controlDayText;
+    // right panel text
+    wxTextCtrl* rightControlYearText;
+    wxTextCtrl* rightControlMonthText;
+    wxTextCtrl* rightControlDayText;
 
-    wxStaticText* yearText;
-    wxStaticText* monthText;
-    wxStaticText* dayText;
+    wxStaticText* rightYearText;
+    wxStaticText* rightMonthText;
+    wxStaticText* rightDayText;
 
     wxStaticText* activityText;
+
+    // left panel text
+    wxTextCtrl* leftControlYearText;
+    wxTextCtrl* leftControlMonthText;
+    wxTextCtrl* leftControlDayText;
+
+    wxStaticText* leftYearText;
+    wxStaticText* leftMonthText;
+    wxStaticText* leftDayText;
+
 
    // wxStaticText* name;
     wxButton* rightSearchButton;
 
     
-
-    wxBoxSizer* leftPanelSizer;
+    // right panel sizers
     wxBoxSizer* rightPanelSizer;
     wxBoxSizer* subRightPanel1MainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
     wxBoxSizer* subRightPanel1HorizontalSizer1;
-    wxBoxSizer* subRightPanel2HorizontalSizer2;
+    wxBoxSizer* subRightPanel1HorizontalSizer2;
+
+    // left panel sizers
+    wxBoxSizer* leftPanelSizer;
+    wxBoxSizer* subLeftPanel1MainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
+    wxBoxSizer* subLeftPanel1HorizontalSizer1;
+    wxBoxSizer* subLeftPanel1HorizontalSizer2;
+    wxBoxSizer* subLeftPanel1HorizontalSizer3;
+    wxBoxSizer* subLeftPanel1HorizontalSizer4;
+
+
+
+
 
     wxBoxSizer* rightSubPanel2Sizer;
     int i=0;
