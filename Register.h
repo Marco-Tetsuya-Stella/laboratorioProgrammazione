@@ -14,6 +14,8 @@ public:
     //functions
     void insert(Activity& a);
     void showDay(Date& d)const;
+    std::multimap<Date,Activity>::iterator returnDay(Date& d );
+    int showQuantity(Date& d);
 
 
 private:

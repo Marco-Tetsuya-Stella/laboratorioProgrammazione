@@ -25,5 +25,17 @@ void Register::showDay(Date &d) const {
     }
 }
 
+std::multimap<Date,Activity>::iterator Register::returnDay(Date &d) {
+
+    std::multimap<Date,Activity>::iterator it = activities.find(d);
+
+    return it;
+}
+
+int Register::showQuantity(Date &d) {
+    int countedDayActivities = activities.count(d);
+    return countedDayActivities;
+}
+
 
 
