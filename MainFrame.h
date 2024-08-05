@@ -16,6 +16,8 @@ public:
 private:
     void createControls();
     void setSplitter();
+    void setRightSizer();
+
 
     wxFont* mainFont;
     wxFont* panelFont;

@@ -18,17 +18,35 @@ void MainFrame::createControls() {
     panelFont = new wxFont(wxFontInfo(16).Italic());
 
     setSplitter();
+    setRightSizer();
 
+
+
+}
+
+void MainFrame::setSplitter() {
+    splitter = new wxSplitterWindow(this,wxID_ANY,wxDefaultPosition,wxDefaultSize,wxSP_BORDER | wxSP_LIVE_UPDATE);
+    leftPanel = new wxPanel(splitter);
+    rightPanel = new wxPanel(splitter);
+    leftPanel->SetBackgroundColour(wxColour(50,70,130));
+    rightPanel->SetBackgroundColour(wxColour(150,200,15));
+    //leftPanel->SetFont(*panelFont);
+   // rightPanel->SetFont(*panelFont);
+    splitter->SplitVertically(leftPanel,rightPanel);
+    splitter->SetMinimumPaneSize(300);
+}
+
+void MainFrame::setRightSizer() {
     wxBoxSizer* rightMainSizer = new wxBoxSizer(wxVERTICAL);                // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
     wxBoxSizer* right1Sizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* right2Sizer = new wxBoxSizer(wxHORIZONTAL);
 
 
-    yearText = new wxStaticText(rightPanel,wxID_ANY,"Year");
+    yearText = new wxStaticText(rightPanel,wxID_ANY,"Year",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
     yearText->SetFont(*panelFont);
-    monthText = new wxStaticText(rightPanel,wxID_ANY,"Month");
+    monthText = new wxStaticText(rightPanel,wxID_ANY,"Month",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
     monthText->SetFont(*panelFont);
-    dayText = new wxStaticText(rightPanel,wxID_ANY,"Day");
+    dayText = new wxStaticText(rightPanel,wxID_ANY,"Day",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
     dayText->SetFont(*panelFont);
 
     right1Sizer->Add(yearText, wxSizerFlags().Proportion(1));
@@ -50,19 +68,6 @@ void MainFrame::createControls() {
     rightMainSizer->SetSizeHints(rightPanel);
 
 
+
 }
-
-void MainFrame::setSplitter() {
-    splitter = new wxSplitterWindow(this,wxID_ANY,wxDefaultPosition,wxDefaultSize,wxSP_BORDER | wxSP_LIVE_UPDATE);
-    leftPanel = new wxPanel(splitter);
-    rightPanel = new wxPanel(splitter);
-    leftPanel->SetBackgroundColour(wxColour(50,70,130));
-    rightPanel->SetBackgroundColour(wxColour(150,200,15));
-    //leftPanel->SetFont(*panelFont);
-   // rightPanel->SetFont(*panelFont);
-    splitter->SplitVertically(leftPanel,rightPanel);
-    splitter->SetMinimumPaneSize(300);
-}
-
-
 
