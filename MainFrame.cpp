@@ -19,10 +19,35 @@ void MainFrame::createControls() {
 
     setSplitter();
 
-    wxBoxSizer* rightMainSizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* rightMainSizer = new wxBoxSizer(wxVERTICAL);                // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
+    wxBoxSizer* right1Sizer = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* right2Sizer = new wxBoxSizer(wxHORIZONTAL);
 
 
+    yearText = new wxStaticText(rightPanel,wxID_ANY,"Year");
+    yearText->SetFont(*panelFont);
+    monthText = new wxStaticText(rightPanel,wxID_ANY,"Month");
+    monthText->SetFont(*panelFont);
+    dayText = new wxStaticText(rightPanel,wxID_ANY,"Day");
+    dayText->SetFont(*panelFont);
 
+    right1Sizer->Add(yearText, wxSizerFlags().Proportion(1));
+    right1Sizer->Add(monthText, wxSizerFlags().Proportion(1));
+    right1Sizer->Add(dayText, wxSizerFlags().Proportion(1));
+
+    controlYearText = new wxTextCtrl(rightPanel, wxID_ANY,"Imput the year",wxDefaultPosition,wxSize(150,20));
+    controlMonthText = new wxTextCtrl(rightPanel, wxID_ANY,"Imput the month",wxDefaultPosition,wxSize(150,20));
+    controlDayText = new wxTextCtrl(rightPanel, wxID_ANY,"Imput the day",wxDefaultPosition,wxSize(150,20));
+
+    right2Sizer->Add(controlYearText,wxSizerFlags().Proportion(1));
+    right2Sizer->Add(controlMonthText,wxSizerFlags().Proportion(1));
+    right2Sizer->Add(controlDayText,wxSizerFlags().Proportion(1));
+
+    rightMainSizer->Add(right1Sizer,wxSizerFlags().Expand());
+    rightMainSizer->Add(right2Sizer,wxSizerFlags().Expand());
+
+    rightPanel->SetSizer(rightMainSizer);
+    rightMainSizer->SetSizeHints(rightPanel);
 
 
 }
