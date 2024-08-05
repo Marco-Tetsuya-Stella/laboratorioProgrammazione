@@ -15,6 +15,7 @@ MainFrame::MainFrame(const wxString &title) : wxFrame(nullptr,wxID_ANY, title) {
 void MainFrame::createControls() {
 
     mainFont = new wxFont(wxFontInfo(30).Bold().Italic());
+    leftPanelFont = new wxFont(wxFontInfo(15).Italic());
     rightPanelFont = new wxFont(wxFontInfo(16).Italic());
 
     setSplitter();
@@ -67,20 +68,26 @@ void MainFrame::setRightPanelSizer() {
 }
 
 void MainFrame::setSubLeftPanel1Sizer() {
-
+    //SIZERS
     subLeftPanel1MainSizer = new wxBoxSizer(wxVERTICAL);
     subLeftPanel1HorizontalSizer1 = new wxBoxSizer(wxHORIZONTAL);
     subLeftPanel1HorizontalSizer2 = new wxBoxSizer(wxHORIZONTAL);
     subLeftPanel1HorizontalSizer3 = new wxBoxSizer(wxHORIZONTAL);
     subLeftPanel1HorizontalSizer4 = new wxBoxSizer(wxHORIZONTAL);
+    subLeftPanel1HorizontalSizer5 = new wxBoxSizer(wxHORIZONTAL);
+    subLeftPanel1HorizontalSizer6 = new wxBoxSizer(wxHORIZONTAL);
+    subLeftPanel1HorizontalSizer7 = new wxBoxSizer(wxHORIZONTAL);
+    subLeftPanel1HorizontalSizer8 = new wxBoxSizer(wxHORIZONTAL);
+
+
 
     // YEAR MOUNTH DAY INPUT
     leftYearText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start year : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
-    leftYearText->SetFont(*rightPanelFont);
+    leftYearText->SetFont(*leftPanelFont);
     leftMonthText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start month : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
-    leftMonthText->SetFont(*rightPanelFont);
+    leftMonthText->SetFont(*leftPanelFont);
     leftDayText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start day : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
-    leftDayText->SetFont(*rightPanelFont);
+    leftDayText->SetFont(*leftPanelFont);
 
     leftControlYearText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start year",wxDefaultPosition,wxSize(150,25));
     leftControlMonthText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start month",wxDefaultPosition,wxSize(150,25));
@@ -96,8 +103,53 @@ void MainFrame::setSubLeftPanel1Sizer() {
     subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer1,1);
     subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer2,1);
 
-    // START FINISH   HOUR MINUTE SECOND INPUT
 
+
+    // START HOUR MINUTE SECOND INPUT
+    leftStartHourText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start hour : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftStartHourText->SetFont(*leftPanelFont);
+    leftStartMinuteText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start mitute : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftStartMinuteText->SetFont(*leftPanelFont);
+    leftStartSecondText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start second : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftStartSecondText->SetFont(*leftPanelFont);
+
+    leftControlStartHourText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start hour",wxDefaultPosition,wxSize(150,25));
+    leftControlStartMinuteText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start minute",wxDefaultPosition,wxSize(150,25));
+    leftControlStartSecondText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start second",wxDefaultPosition,wxSize(150,25));
+
+    subLeftPanel1HorizontalSizer3->Add(leftStartHourText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer3->Add(leftControlStartHourText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer3->Add(leftStartMinuteText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer3->Add(leftControlStartMinuteText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer4->Add(leftStartSecondText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer4->Add(leftControlStartSecondText,1,wxALL,2);
+
+    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer3,1);
+    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer4,1);
+
+
+
+    // FINISH HOUR MINUTE SECOND INPUT
+    leftFinishHourText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput finish hour : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftFinishHourText->SetFont(*leftPanelFont);
+    leftFinishMinuteText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput finish mitute : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftFinishMinuteText->SetFont(*leftPanelFont);
+    leftFinishSecondText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput finish second : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftFinishSecondText->SetFont(*leftPanelFont);
+
+    leftControlFinishHourText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput finish hour",wxDefaultPosition,wxSize(150,25));
+    leftControlFinishMinuteText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput finish minute",wxDefaultPosition,wxSize(150,25));
+    leftControlFinishSecondText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput finish second",wxDefaultPosition,wxSize(150,25));
+
+    subLeftPanel1HorizontalSizer5->Add(leftFinishHourText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer5->Add(leftControlFinishHourText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer5->Add(leftFinishMinuteText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer5->Add(leftControlFinishMinuteText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer6->Add(leftFinishSecondText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer6->Add(leftControlFinishSecondText,1,wxALL,2);
+
+    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer5,1);
+    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer6,1);
 
 
 
@@ -108,11 +160,15 @@ void MainFrame::setSubLeftPanel1Sizer() {
 
 
 
+
+
 void MainFrame::setSubRightPanel1Sizer() {
+    //SIZERS
     subRightPanel1MainSizer = new wxBoxSizer(wxVERTICAL);                // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
     subRightPanel1HorizontalSizer1 = new wxBoxSizer(wxHORIZONTAL);
     subRightPanel1HorizontalSizer2 = new wxBoxSizer(wxHORIZONTAL);
 
+    //SEARCHED YEAR MOUNTH DAY IMPUT
     rightYearText = new wxStaticText(subRightPanel1, wxID_ANY, "Year", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
     rightYearText->SetFont(*rightPanelFont);
     rightMonthText = new wxStaticText(subRightPanel1, wxID_ANY, "Month", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
@@ -128,11 +184,11 @@ void MainFrame::setSubRightPanel1Sizer() {
     rightControlMonthText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Imput the month",wxDefaultPosition,wxSize(150,25));
     rightControlDayText = new wxTextCtrl(subRightPanel1, wxID_ANY, "Imput the day", wxDefaultPosition, wxSize(150, 25));
 
-
     subRightPanel1HorizontalSizer2->Add(rightControlYearText, wxSizerFlags().Proportion(1));
     subRightPanel1HorizontalSizer2->Add(rightControlMonthText, wxSizerFlags().Proportion(1));
     subRightPanel1HorizontalSizer2->Add(rightControlDayText, wxSizerFlags().Proportion(1));
 
+    //CREATE SEARCH BUTTON
     rightSearchButton = new wxButton(subRightPanel1,wxID_ANY,"Search");
 
     subRightPanel1MainSizer->Add(subRightPanel1HorizontalSizer1, wxSizerFlags().Expand());

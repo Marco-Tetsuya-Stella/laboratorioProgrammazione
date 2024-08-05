@@ -26,11 +26,14 @@ private:
     void setSubRightPanel1Sizer();
     void onRightSearchButtonCliked(wxCommandEvent& evt);
 
-
+    //FONTS
     wxFont* mainFont;
+    wxFont* leftPanelFont;
     wxFont* rightPanelFont;
 
 
+
+    //PANELS
     wxPanel* leftPanel;
     wxPanel* rightPanel;
     wxPanel* subLeftPanel1;
@@ -42,7 +45,28 @@ private:
     
     wxSplitterWindow* splitter;
 
-    // right panel text
+    // LEFT PANEL TEXT
+    wxTextCtrl* leftControlYearText;
+    wxTextCtrl* leftControlMonthText;
+    wxTextCtrl* leftControlDayText;
+    wxTextCtrl* leftControlStartHourText;
+    wxTextCtrl* leftControlStartMinuteText;
+    wxTextCtrl* leftControlStartSecondText;
+    wxTextCtrl* leftControlFinishHourText;
+    wxTextCtrl* leftControlFinishMinuteText;
+    wxTextCtrl* leftControlFinishSecondText;
+
+    wxStaticText* leftYearText;
+    wxStaticText* leftMonthText;
+    wxStaticText* leftDayText;
+    wxStaticText* leftStartHourText;
+    wxStaticText* leftStartMinuteText;
+    wxStaticText* leftStartSecondText;
+    wxStaticText* leftFinishHourText;
+    wxStaticText* leftFinishMinuteText;
+    wxStaticText* leftFinishSecondText;
+
+    // RIGHT PANEL TEXT
     wxTextCtrl* rightControlYearText;
     wxTextCtrl* rightControlMonthText;
     wxTextCtrl* rightControlDayText;
@@ -53,34 +77,31 @@ private:
 
     wxStaticText* activityText;
 
-    // left panel text
-    wxTextCtrl* leftControlYearText;
-    wxTextCtrl* leftControlMonthText;
-    wxTextCtrl* leftControlDayText;
 
-    wxStaticText* leftYearText;
-    wxStaticText* leftMonthText;
-    wxStaticText* leftDayText;
 
 
    // wxStaticText* name;
     wxButton* rightSearchButton;
 
-    
-    // right panel sizers
-    wxBoxSizer* rightPanelSizer;
-    wxBoxSizer* subRightPanel1MainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
-    wxBoxSizer* subRightPanel1HorizontalSizer1;
-    wxBoxSizer* subRightPanel1HorizontalSizer2;
-
-    // left panel sizers
+    // LEFT PANEL SIZERS
     wxBoxSizer* leftPanelSizer;
     wxBoxSizer* subLeftPanel1MainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
     wxBoxSizer* subLeftPanel1HorizontalSizer1;
     wxBoxSizer* subLeftPanel1HorizontalSizer2;
     wxBoxSizer* subLeftPanel1HorizontalSizer3;
     wxBoxSizer* subLeftPanel1HorizontalSizer4;
+    wxBoxSizer* subLeftPanel1HorizontalSizer5;
+    wxBoxSizer* subLeftPanel1HorizontalSizer6;
+    wxBoxSizer* subLeftPanel1HorizontalSizer7;
+    wxBoxSizer* subLeftPanel1HorizontalSizer8;
 
+
+
+    // RIGHT PANEL SIZERS
+    wxBoxSizer* rightPanelSizer;
+    wxBoxSizer* subRightPanel1MainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
+    wxBoxSizer* subRightPanel1HorizontalSizer1;
+    wxBoxSizer* subRightPanel1HorizontalSizer2;
 
 
 
