@@ -7,6 +7,9 @@
 #include <wx/wx.h>
 #include <string>
 #include <wx/splitter.h>
+#include "Register.h"
+#include <sstream>
+
 
 class MainFrame : public wxFrame{
 
@@ -17,6 +20,7 @@ private:
     void createControls();
     void setSplitter();
     void setRightSizer();
+    void onRightSearchButtonCliked(wxCommandEvent& evt);
 
 
     wxFont* mainFont;
@@ -34,6 +38,17 @@ private:
     wxStaticText* yearText;
     wxStaticText* monthText;
     wxStaticText* dayText;
+
+   // wxStaticText* name;
+    wxButton* rightSearchButton;
+
+    wxArrayString choices;
+
+    wxBoxSizer* rightMainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
+    wxBoxSizer* rightHoriziontalSizer1;
+    wxBoxSizer* rightHorizontalSizer2;
+
+    Register activities;
 
 };
 

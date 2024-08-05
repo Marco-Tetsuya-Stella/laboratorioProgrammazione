@@ -20,7 +20,7 @@ void MainFrame::createControls() {
     setSplitter();
     setRightSizer();
 
-
+    rightSearchButton->Bind(wxEVT_BUTTON,&MainFrame::onRightSearchButtonCliked,this);
 
 }
 
@@ -37,10 +37,9 @@ void MainFrame::setSplitter() {
 }
 
 void MainFrame::setRightSizer() {
-    wxBoxSizer* rightMainSizer = new wxBoxSizer(wxVERTICAL);                // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
-    wxBoxSizer* right1Sizer = new wxBoxSizer(wxHORIZONTAL);
-    wxBoxSizer* right2Sizer = new wxBoxSizer(wxHORIZONTAL);
-
+    rightMainSizer = new wxBoxSizer(wxVERTICAL);                // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
+    rightHoriziontalSizer1 = new wxBoxSizer(wxHORIZONTAL);
+    rightHorizontalSizer2 = new wxBoxSizer(wxHORIZONTAL);
 
     yearText = new wxStaticText(rightPanel,wxID_ANY,"Year",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
     yearText->SetFont(*panelFont);
@@ -49,25 +48,56 @@ void MainFrame::setRightSizer() {
     dayText = new wxStaticText(rightPanel,wxID_ANY,"Day",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
     dayText->SetFont(*panelFont);
 
-    right1Sizer->Add(yearText, wxSizerFlags().Proportion(1));
-    right1Sizer->Add(monthText, wxSizerFlags().Proportion(1));
-    right1Sizer->Add(dayText, wxSizerFlags().Proportion(1));
+    rightHoriziontalSizer1->Add(yearText, wxSizerFlags().Proportion(1));
+    rightHoriziontalSizer1->Add(monthText, wxSizerFlags().Proportion(1));
+    rightHoriziontalSizer1->Add(dayText, wxSizerFlags().Proportion(1));
 
-    controlYearText = new wxTextCtrl(rightPanel, wxID_ANY,"Imput the year",wxDefaultPosition,wxSize(150,20));
-    controlMonthText = new wxTextCtrl(rightPanel, wxID_ANY,"Imput the month",wxDefaultPosition,wxSize(150,20));
-    controlDayText = new wxTextCtrl(rightPanel, wxID_ANY,"Imput the day",wxDefaultPosition,wxSize(150,20));
+    controlYearText = new wxTextCtrl(rightPanel, wxID_ANY,"Imput the year",wxDefaultPosition,wxSize(150,25));
+    controlMonthText = new wxTextCtrl(rightPanel, wxID_ANY,"Imput the month",wxDefaultPosition,wxSize(150,25));
+    controlDayText = new wxTextCtrl(rightPanel, wxID_ANY,"Imput the day",wxDefaultPosition,wxSize(150,25));
 
-    right2Sizer->Add(controlYearText,wxSizerFlags().Proportion(1));
-    right2Sizer->Add(controlMonthText,wxSizerFlags().Proportion(1));
-    right2Sizer->Add(controlDayText,wxSizerFlags().Proportion(1));
+    rightHorizontalSizer2->Add(controlYearText,wxSizerFlags().Proportion(1));
+    rightHorizontalSizer2->Add(controlMonthText,wxSizerFlags().Proportion(1));
+    rightHorizontalSizer2->Add(controlDayText,wxSizerFlags().Proportion(1));
 
-    rightMainSizer->Add(right1Sizer,wxSizerFlags().Expand());
-    rightMainSizer->Add(right2Sizer,wxSizerFlags().Expand());
+    rightSearchButton = new wxButton(rightPanel,wxID_ANY,"Search");
+
+    rightMainSizer->Add(rightHoriziontalSizer1,wxSizerFlags().Expand());
+    rightMainSizer->Add(rightHorizontalSizer2,wxSizerFlags().Expand());
+    rightMainSizer->Add(rightSearchButton,wxSizerFlags().Expand());
 
     rightPanel->SetSizer(rightMainSizer);
     rightMainSizer->SetSizeHints(rightPanel);
+}
+
+void MainFrame::onRightSearchButtonCliked(wxCommandEvent(& evt)) {
+    int y=0;
+    int m=0;
+    int d=0;
+
+    y = atoi(controlYearText->GetValue());
+    m = atoi(controlMonthText->GetValue());
+    d = atoi(controlDayText->GetValue());
+    Date date(y,m,d);
+    std::multimap<Date,Activity>::iterator it = activities.returnDay(date);
+    int countedDayActivities = activities.showQuantity(date);
+
+    /*wxMessageBox(" "+std::to_string(y)+" "+std::to_string(m),
+                 "About Hello World", wxOK | wxICON_INFORMATION);*/
+
+   std::stringstream stringstream;
+
+   for(auto start=it; start!= std::next(it,countedDayActivities); start++){
+       stringstream <<" Name " << start->second.getName() << "\n" << " Description " << start->second.getDescription() << "\n"
+                    <<" Start time ";
+   }
+
+
 
 
 
 }
+
+
+
 
