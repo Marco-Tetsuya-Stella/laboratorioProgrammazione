@@ -19,9 +19,11 @@ public:
 private:
     void createControls();
     void setSplitter();
-    void setSubRightPanel1Sizer();
-    void setRightPanelSizer();
+    void setLeftPanelSizer();
+    void setSubLeftPanel1Sizer();
 
+    void setRightPanelSizer();
+    void setSubRightPanel1Sizer();
     void onRightSearchButtonCliked(wxCommandEvent& evt);
 
 
@@ -31,9 +33,13 @@ private:
 
     wxPanel* leftPanel;
     wxPanel* rightPanel;
+    wxPanel* subLeftPanel1;
+    wxPanel* subLeftPanel2 ;
     wxPanel* subRightPanel1;
     wxPanel* subRightPanel2;
-
+    
+    
+    
     wxSplitterWindow* splitter;
 
     wxTextCtrl* controlYearText;
@@ -49,8 +55,9 @@ private:
    // wxStaticText* name;
     wxButton* rightSearchButton;
 
-    wxArrayString choices;
+    
 
+    wxBoxSizer* leftPanelSizer;
     wxBoxSizer* rightPanelSizer;
     wxBoxSizer* subRightPanel1MainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
     wxBoxSizer* subRightPanel1HorizontalSizer1;

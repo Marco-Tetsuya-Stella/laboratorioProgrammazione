@@ -18,6 +18,8 @@ void MainFrame::createControls() {
     panelFont = new wxFont(wxFontInfo(16).Italic());
 
     setSplitter();
+
+    setLeftPanelSizer();
     setRightPanelSizer();
     setSubRightPanel1Sizer();
 
@@ -33,6 +35,20 @@ void MainFrame::setSplitter() {
     rightPanel->SetBackgroundColour(wxColour(153,153,255));
     splitter->SplitVertically(leftPanel,rightPanel);
     splitter->SetMinimumPaneSize(450);
+}
+
+void MainFrame::setLeftPanelSizer() {
+    subLeftPanel1 = new wxPanel(leftPanel,wxID_ANY,wxDefaultPosition,wxSize(200,100));
+    subLeftPanel2 = new wxPanel(leftPanel,wxID_ANY,wxDefaultPosition,wxSize(200,100));
+    subLeftPanel1->SetBackgroundColour(wxColour(255,153,51));
+    subLeftPanel2->SetBackgroundColour(wxColour(255,255,255));
+
+    leftPanelSizer = new wxBoxSizer(wxVERTICAL);
+    leftPanelSizer->Add(subLeftPanel1,4,wxEXPAND | wxALL,5);
+    leftPanelSizer->Add(subLeftPanel2,1,wxEXPAND | wxALL,5);
+
+    leftPanel->SetSizer(leftPanelSizer);
+    leftPanelSizer->SetSizeHints(leftPanel);
 }
 
 void MainFrame::setRightPanelSizer() {
@@ -116,8 +132,7 @@ void MainFrame::onRightSearchButtonCliked(wxCommandEvent(& evt)) {
                     << " Description " << start->second.getDescription() << "\n \n";
     }*/
 
-    wxSize s = subRightPanel2->GetSize();
-
+    //Updte system. The activities are updated with each click
     subRightPanel2->DestroyChildren();
     auto panel = new wxScrolled<wxPanel>(subRightPanel2,wxID_ANY,wxDefaultPosition,wxSize(subRightPanel2->GetSize()));
     panel->SetScrollRate(0,10);
