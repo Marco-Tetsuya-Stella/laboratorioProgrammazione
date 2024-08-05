@@ -25,6 +25,13 @@ private:
     wxPanel* rightPanel;
     wxSplitterWindow* splitter;
 
+    wxTextCtrl* controlYearText;
+    wxTextCtrl* controlMonthText;
+    wxTextCtrl* controlDayText;
+
+    wxStaticText* yearText;
+    wxStaticText* monthText;
+    wxStaticText* dayText;
 
 };
 

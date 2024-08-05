@@ -19,6 +19,12 @@ void MainFrame::createControls() {
 
     setSplitter();
 
+    wxBoxSizer* rightMainSizer = new wxBoxSizer(wxVERTICAL);
+
+
+
+
+
 }
 
 void MainFrame::setSplitter() {
