@@ -55,6 +55,8 @@ private:
     wxTextCtrl* leftControlFinishHourText;
     wxTextCtrl* leftControlFinishMinuteText;
     wxTextCtrl* leftControlFinishSecondText;
+    wxTextCtrl* leftControlActivityNameText;
+    wxTextCtrl* leftControlActivityDescriptionText;
 
     wxStaticText* leftYearText;
     wxStaticText* leftMonthText;
@@ -65,6 +67,10 @@ private:
     wxStaticText* leftFinishHourText;
     wxStaticText* leftFinishMinuteText;
     wxStaticText* leftFinishSecondText;
+    wxStaticText* leftActivityNameText;
+    wxStaticText* leftActivityDescriptionText;
+
+
 
     // RIGHT PANEL TEXT
     wxTextCtrl* rightControlYearText;
@@ -77,10 +83,11 @@ private:
 
     wxStaticText* activityText;
 
+    // LEFT PANEL BUTTONS
+    wxButton* leftSaveButton;
 
 
-
-   // wxStaticText* name;
+    // RIGHT PANEL BUTTONS
     wxButton* rightSearchButton;
 
     // LEFT PANEL SIZERS
@@ -94,7 +101,8 @@ private:
     wxBoxSizer* subLeftPanel1HorizontalSizer6;
     wxBoxSizer* subLeftPanel1HorizontalSizer7;
     wxBoxSizer* subLeftPanel1HorizontalSizer8;
-
+    wxBoxSizer* subLeftPanel1HorizontalSizer9;
+    wxBoxSizer* subLeftPanel1HorizontalSizer10;
 
 
     // RIGHT PANEL SIZERS

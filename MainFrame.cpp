@@ -78,8 +78,8 @@ void MainFrame::setSubLeftPanel1Sizer() {
     subLeftPanel1HorizontalSizer6 = new wxBoxSizer(wxHORIZONTAL);
     subLeftPanel1HorizontalSizer7 = new wxBoxSizer(wxHORIZONTAL);
     subLeftPanel1HorizontalSizer8 = new wxBoxSizer(wxHORIZONTAL);
-
-
+    subLeftPanel1HorizontalSizer9 = new wxBoxSizer(wxHORIZONTAL);
+    subLeftPanel1HorizontalSizer10 = new wxBoxSizer(wxHORIZONTAL);
 
     // YEAR MOUNTH DAY INPUT
     leftYearText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start year : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
@@ -153,6 +153,31 @@ void MainFrame::setSubLeftPanel1Sizer() {
 
 
 
+    // ACTIVITY NAME AND DESCRIPTION IMPUT
+    leftActivityNameText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput activity name : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftActivityNameText->SetFont(*leftPanelFont);
+    leftActivityDescriptionText = new wxStaticText(subLeftPanel1,wxID_ANY,"Write activity description",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_VERTICAL);
+    leftActivityDescriptionText->SetFont(*leftPanelFont);
+
+    leftControlActivityNameText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput activity name",wxDefaultPosition,wxSize(150,25));
+    leftControlActivityDescriptionText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Write activity description",wxDefaultPosition,wxSize(150,100));
+
+    subLeftPanel1HorizontalSizer7->Add(leftActivityNameText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer7->Add(leftControlActivityNameText,1, wxALL,2);
+    subLeftPanel1HorizontalSizer8->Add(leftActivityDescriptionText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer9->Add(leftControlActivityDescriptionText,1,wxALL,2);
+
+    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer7,1);
+    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer8,1,wxALIGN_CENTER_HORIZONTAL);
+    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer9,2,wxEXPAND);
+
+
+
+    // CREATE SAVE BUTTON
+    leftSaveButton = new wxButton(subLeftPanel1,wxID_ANY,"Save");
+    subLeftPanel1MainSizer->Add(leftSaveButton,1,wxEXPAND|wxALL,10);
+
+    // SET THE SIZER
     subLeftPanel1->SetSizer(subLeftPanel1MainSizer);
     subLeftPanel1MainSizer->SetSizeHints(subLeftPanel1);
 
@@ -168,6 +193,8 @@ void MainFrame::setSubRightPanel1Sizer() {
     subRightPanel1HorizontalSizer1 = new wxBoxSizer(wxHORIZONTAL);
     subRightPanel1HorizontalSizer2 = new wxBoxSizer(wxHORIZONTAL);
 
+
+
     //SEARCHED YEAR MOUNTH DAY IMPUT
     rightYearText = new wxStaticText(subRightPanel1, wxID_ANY, "Year", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
     rightYearText->SetFont(*rightPanelFont);
@@ -176,23 +203,24 @@ void MainFrame::setSubRightPanel1Sizer() {
     rightDayText = new wxStaticText(subRightPanel1, wxID_ANY, "Day", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
     rightDayText->SetFont(*rightPanelFont);
 
-    subRightPanel1HorizontalSizer1->Add(rightYearText, wxSizerFlags().Proportion(1));
-    subRightPanel1HorizontalSizer1->Add(rightMonthText, wxSizerFlags().Proportion(1));
-    subRightPanel1HorizontalSizer1->Add(rightDayText, wxSizerFlags().Proportion(1));
-
     rightControlYearText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Imput the year",wxDefaultPosition,wxSize(150,25));
     rightControlMonthText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Imput the month",wxDefaultPosition,wxSize(150,25));
     rightControlDayText = new wxTextCtrl(subRightPanel1, wxID_ANY, "Imput the day", wxDefaultPosition, wxSize(150, 25));
 
+    subRightPanel1HorizontalSizer1->Add(rightYearText, wxSizerFlags().Proportion(1));
+    subRightPanel1HorizontalSizer1->Add(rightMonthText, wxSizerFlags().Proportion(1));
+    subRightPanel1HorizontalSizer1->Add(rightDayText, wxSizerFlags().Proportion(1));
     subRightPanel1HorizontalSizer2->Add(rightControlYearText, wxSizerFlags().Proportion(1));
     subRightPanel1HorizontalSizer2->Add(rightControlMonthText, wxSizerFlags().Proportion(1));
     subRightPanel1HorizontalSizer2->Add(rightControlDayText, wxSizerFlags().Proportion(1));
 
-    //CREATE SEARCH BUTTON
-    rightSearchButton = new wxButton(subRightPanel1,wxID_ANY,"Search");
-
     subRightPanel1MainSizer->Add(subRightPanel1HorizontalSizer1, wxSizerFlags().Expand());
     subRightPanel1MainSizer->Add(subRightPanel1HorizontalSizer2, wxSizerFlags().Expand());
+
+
+
+    //CREATE SEARCH BUTTON
+    rightSearchButton = new wxButton(subRightPanel1,wxID_ANY,"Search");
     subRightPanel1MainSizer->Add(rightSearchButton, wxSizerFlags().Expand());
 
     subRightPanel1->SetSizer(subRightPanel1MainSizer);
