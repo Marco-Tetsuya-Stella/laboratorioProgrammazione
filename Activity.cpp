@@ -5,8 +5,8 @@
 #include "Activity.h"
 
 
-Activity::Activity(const std::string &n, const std::string &d, const Date &sD, const Date &fD, const Time &sT,
-                   const Time &fT): name(n) , description(d) , startDay(sD) , finishDay(fD) , startTime(sT) ,
+Activity::Activity(const std::string &n, const std::string &d, const Date &sD, const Time &sT,
+                   const Time &fT): name(n) , description(d) , startDay(sD), startTime(sT) ,
                                     finishTime(fT) {}
 
 
@@ -36,14 +36,6 @@ void Activity::setStartDay(const Date &startDay) {
     Activity::startDay = startDay;
 }
 
-const Date &Activity::getFinishDay() const {
-    return finishDay;
-}
-
-void Activity::setFinishDay(const Date &finishDay) {
-    Activity::finishDay = finishDay;
-}
-
 const Time &Activity::getStartTime() const {
     return startTime;
 }
@@ -68,7 +60,6 @@ void Activity::show() const{
     startTime.show();
     std::cout<<std::endl;
     std::cout << "Finish : " << std::endl;
-    finishDay.show();
     finishTime.show();
     std::cout<<std::endl;
     std::cout << "Description : " << description << std::endl << std::endl;

@@ -11,7 +11,7 @@
 class Activity {
 
 public:
-    Activity(const std::string& n, const std::string& d, const Date& sD, const Date& fD ,const Time& sT, const Time& fT  );
+    Activity(const std::string& n, const std::string& d, const Date& sD ,const Time& sT, const Time& fT);
 
     //getter and setter
     const std::string &getName() const;
@@ -22,9 +22,6 @@ public:
 
     const Date &getStartDay() const;
     void setStartDay(const Date &startDay);
-
-    const Date &getFinishDay() const;
-    void setFinishDay(const Date &finishDay);
 
     const Time &getStartTime() const;
     void setStartTime(const Time &startTime);
@@ -41,7 +38,6 @@ private:
     std::string description=" ";
 
     Date startDay;
-    Date finishDay;
     Time startTime;
     Time finishTime;
 
