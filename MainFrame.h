@@ -9,7 +9,7 @@
 #include <wx/splitter.h>
 #include "Register.h"
 #include <sstream>
-
+#include <wx/window.h>
 
 class MainFrame : public wxFrame{
 
@@ -19,8 +19,8 @@ public:
 private:
     void createControls();
     void setSplitter();
-    void setRightSizer();
-    void setSubRightPanelSizer();
+    void setSubRightPanel1Sizer();
+    void setRightPanelSizer();
 
     void onRightSearchButtonCliked(wxCommandEvent& evt);
 
@@ -52,9 +52,12 @@ private:
     wxArrayString choices;
 
     wxBoxSizer* rightPanelSizer;
-    wxBoxSizer* rightMainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
-    wxBoxSizer* rightHoriziontalSizer1;
-    wxBoxSizer* rightHorizontalSizer2;
+    wxBoxSizer* subRightPanel1MainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
+    wxBoxSizer* subRightPanel1HorizontalSizer1;
+    wxBoxSizer* subRightPanel2HorizontalSizer2;
+
+    wxBoxSizer* rightSubPanel2Sizer;
+    int i=0;
 
     Register activities;
 
