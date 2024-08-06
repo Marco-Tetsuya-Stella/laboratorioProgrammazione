@@ -183,8 +183,6 @@ void MainFrame::setSubLeftPanel1Sizer() {
 
 
 
-
-
 void MainFrame::setSubRightPanel1Sizer() {
     //SIZERS
     subRightPanel1MainSizer = new wxBoxSizer(wxVERTICAL);                // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
@@ -201,9 +199,9 @@ void MainFrame::setSubRightPanel1Sizer() {
     rightDayText = new wxStaticText(subRightPanel1, wxID_ANY, "Day", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
     rightDayText->SetFont(*rightPanelFont);
 
-    rightControlYearText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Input the year",wxDefaultPosition,wxSize(150,25));
-    rightControlMonthText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Input the month",wxDefaultPosition,wxSize(150,25));
-    rightControlDayText = new wxTextCtrl(subRightPanel1, wxID_ANY, "Input the day", wxDefaultPosition, wxSize(150, 25));
+    rightControlYearText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Input the year",wxDefaultPosition,wxSize(110,25));
+    rightControlMonthText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Input the month",wxDefaultPosition,wxSize(125,25));
+    rightControlDayText = new wxTextCtrl(subRightPanel1, wxID_ANY, "Input the day", wxDefaultPosition, wxSize(110, 25));
 
     subRightPanel1HorizontalSizer1->Add(rightYearText, wxSizerFlags().Proportion(1));
     subRightPanel1HorizontalSizer1->Add(rightMonthText, wxSizerFlags().Proportion(1));
@@ -218,7 +216,7 @@ void MainFrame::setSubRightPanel1Sizer() {
 
 
     //CREATE SEARCH BUTTON
-    rightSearchButton = new wxButton(subRightPanel1,wxID_ANY,"Search");
+    rightSearchButton = new wxButton(subRightPanel1,wxID_ANY,"Search activities");
     subRightPanel1MainSizer->Add(rightSearchButton, wxSizerFlags().Expand());
 
     subRightPanel1->SetSizer(subRightPanel1MainSizer);
@@ -246,10 +244,10 @@ void MainFrame::onLeftSaveButtonCliked(wxCommandEvent &evt) {
 
     Activity activity(name,description,date,startTime,finishTime);
 
-    activities.insert(activity);
+    std::string inputMessage = activities.insert(activity);
 
-    wxMessageBox("Activity saved",
-                 "About Hello World", wxOK | wxICON_INFORMATION);
+    wxMessageBox(inputMessage,
+                 "Information", wxOK | wxICON_INFORMATION);
 }
 
 

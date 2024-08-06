@@ -15,7 +15,7 @@ Time::Time(int h, int m, int s) {
 void Time::setHour(int h) {
     if( h<0 or h>24 ) {
         std::cout << "Hour is invalid a default parameter will be applied " << std::endl;
-        hour=0;
+        hour=-1;
     }
     else
     {
@@ -26,7 +26,7 @@ void Time::setHour(int h) {
 void Time::setMinute(int m) {
     if( m<0 or m>60 ) {
         std::cout << "Minute is invalid a default parameter will be applied " << std::endl;
-        minute=0;
+        minute=-1;
     }
     else
     {
@@ -37,7 +37,7 @@ void Time::setMinute(int m) {
 void Time::setSecond(int s) {
     if( s<0 or s>60 ) {
         std::cout << "Second is invalid a default parameter will be applied " << std::endl;
-        second=0;
+        second=-1;
     }
     else
     {
@@ -56,6 +56,34 @@ int Time::getMinute() const {
 int Time::getSecond() const {
     return second;
 }
+
+//operators
+bool Time::operator<(const Time &orig) const {
+    bool result=false;
+    if(hour < orig.hour ){
+        result=true;
+    }
+    else
+    {
+        if(hour == orig.hour){
+            if(minute < orig.minute){
+                result=true;
+            }
+            else
+            {
+                if(minute == orig.minute){
+                    if(second < orig.second){
+                        result= true;
+                    }
+                }
+            }
+        }
+    }
+    return result;
+}
+
+
+
 
 //functions
 void Time::show() const{

@@ -17,19 +17,17 @@ public:
     MainFrame(const wxString& title);
 
 private:
+
+    // SET SPLITTER AND PANELS
     void createControls();
     void setSplitter();
     void setLeftPanelSizer();
     void setSubLeftPanel1Sizer();
-
-
-
-
     void setRightPanelSizer();
     void setSubRightPanel1Sizer();
 
 
-    // BUTTONS CONTOL
+    // BUTTONS CONTOL  FUNCTIONS
     void onLeftSaveButtonCliked(wxCommandEvent& evt);
     void onRightSearchButtonCliked(wxCommandEvent& evt);
     const std::string fromWxStringToString(wxTextCtrl* textCtrl);
@@ -39,21 +37,18 @@ private:
     wxFont* leftPanelFont;
     wxFont* rightPanelFont;
 
+    // SPLITTER
+    wxSplitterWindow* splitter;
 
-
-    //PANELS
+    // PANELS
     wxPanel* leftPanel;
     wxPanel* rightPanel;
     wxPanel* subLeftPanel1;
     wxPanel* subLeftPanel2 ;
     wxPanel* subRightPanel1;
     wxPanel* subRightPanel2;
-    
-    
-    
-    wxSplitterWindow* splitter;
 
-    // LEFT PANEL TEXT
+    // LEFT PANEL CONTOLLABLE TEXT
     wxTextCtrl* leftControlYearText;
     wxTextCtrl* leftControlMonthText;
     wxTextCtrl* leftControlDayText;
@@ -66,6 +61,7 @@ private:
     wxTextCtrl* leftControlActivityNameText;
     wxTextCtrl* leftControlActivityDescriptionText;
 
+    // LEFT PANEL STATIC TEXT
     wxStaticText* leftYearText;
     wxStaticText* leftMonthText;
     wxStaticText* leftDayText;
@@ -78,22 +74,19 @@ private:
     wxStaticText* leftActivityNameText;
     wxStaticText* leftActivityDescriptionText;
 
-
-
-    // RIGHT PANEL TEXT
+    // RIGHT PANEL CONTROLLABLE TEXT
     wxTextCtrl* rightControlYearText;
     wxTextCtrl* rightControlMonthText;
     wxTextCtrl* rightControlDayText;
 
+    // RIGHT PANEL STATIC TEXT
     wxStaticText* rightYearText;
     wxStaticText* rightMonthText;
     wxStaticText* rightDayText;
-
     wxStaticText* activityText;
 
     // LEFT PANEL BUTTONS
     wxButton* leftSaveButton;
-
 
     // RIGHT PANEL BUTTONS
     wxButton* rightSearchButton;
@@ -121,9 +114,10 @@ private:
     wxBoxSizer* subRightPanel2Sizer;
     int i=0;
 
-
+    // STRING STREAM
     std::stringstream stringstream;
 
+    // REGISTER
     Register activities;
 
 };

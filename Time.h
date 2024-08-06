@@ -19,6 +19,11 @@ public:
     int getMinute() const;
     int getSecond() const;
 
+    //operator
+    bool operator<(const Time& orig) const;
+
+
+
     //functions
     void show() const;
 
