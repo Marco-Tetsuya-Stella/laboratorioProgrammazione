@@ -12,7 +12,7 @@ MainFrame::MainFrame(const wxString &title) : wxFrame(nullptr,wxID_ANY, title) {
 
 void MainFrame::createControls() {
 
-    mainFont = new wxFont(wxFontInfo(30).Bold().Italic());
+    mainFont = new wxFont(wxFontInfo(25).Bold());
     leftPanelFont = new wxFont(wxFontInfo(15).Italic());
     rightPanelFont = new wxFont(wxFontInfo(16).Italic());
 
@@ -31,16 +31,16 @@ void MainFrame::setSplitter() {
     splitter = new wxSplitterWindow(this,wxID_ANY,wxDefaultPosition,wxDefaultSize,wxSP_BORDER | wxSP_LIVE_UPDATE);
     leftPanel = new wxPanel(splitter);
     rightPanel = new wxPanel(splitter);
-    leftPanel->SetBackgroundColour(wxColour(255,255,255));
+    leftPanel->SetBackgroundColour(wxColour(204,229,255));
     rightPanel->SetBackgroundColour(wxColour(153,153,255));
     splitter->SplitVertically(leftPanel,rightPanel);
-    splitter->SetMinimumPaneSize(450);
+    splitter->SetMinimumPaneSize(710);
 }
 
 void MainFrame::setLeftPanelSizer() {
     subLeftPanel1 = new wxPanel(leftPanel,wxID_ANY,wxDefaultPosition,wxSize(200,100));
     subLeftPanel2 = new wxPanel(leftPanel,wxID_ANY,wxDefaultPosition,wxSize(200,100));
-    subLeftPanel1->SetBackgroundColour(wxColour(255,153,51));
+    subLeftPanel1->SetBackgroundColour(wxColour(204,255,255));
     subLeftPanel2->SetBackgroundColour(wxColour(255,255,255));
 
     leftPanelSizer = new wxBoxSizer(wxVERTICAL);
@@ -58,15 +58,15 @@ void MainFrame::setRightPanelSizer() {
     subRightPanel2->SetBackgroundColour(wxColour(255,255,255));
 
     rightPanelSizer = new wxBoxSizer(wxVERTICAL);
-    rightPanelSizer->Add(subRightPanel1,1,wxEXPAND | wxALL,5);
-    rightPanelSizer->Add(subRightPanel2,9,wxEXPAND | wxALL,5);
+    rightPanelSizer->Add(subRightPanel1,2,wxEXPAND | wxALL,3);
+    rightPanelSizer->Add(subRightPanel2,8,wxEXPAND | wxALL,3);
 
     rightPanel->SetSizer(rightPanelSizer);
     rightPanelSizer->SetSizeHints(rightPanel);
 }
 
 void MainFrame::setSubLeftPanel1Sizer() {
-    //SIZERS
+    // SIZERS
     subLeftPanel1MainSizer = new wxBoxSizer(wxVERTICAL);
     subLeftPanel1HorizontalSizer1 = new wxBoxSizer(wxHORIZONTAL);
     subLeftPanel1HorizontalSizer2 = new wxBoxSizer(wxHORIZONTAL);
@@ -77,7 +77,15 @@ void MainFrame::setSubLeftPanel1Sizer() {
     subLeftPanel1HorizontalSizer7 = new wxBoxSizer(wxHORIZONTAL);
     subLeftPanel1HorizontalSizer8 = new wxBoxSizer(wxHORIZONTAL);
     subLeftPanel1HorizontalSizer9 = new wxBoxSizer(wxHORIZONTAL);
-    subLeftPanel1HorizontalSizer10 = new wxBoxSizer(wxHORIZONTAL);
+
+
+
+    // CREATE HEADER TEXT
+    leftHeaderText = new wxStaticText(subLeftPanel1,wxID_ANY,"Create activity",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
+    leftHeaderText->SetFont(*mainFont);
+    leftHeaderText->SetBackgroundColour(wxColour(153,255,255));
+    subLeftPanel1MainSizer->Add(leftHeaderText,1,wxEXPAND | wxALL ,4);
+
 
 
     // YEAR MOUNTH DAY INPUT
@@ -154,27 +162,29 @@ void MainFrame::setSubLeftPanel1Sizer() {
 
     // ACTIVITY NAME AND DESCRIPTION INPUT
     leftActivityNameText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input activity name : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
-    leftActivityNameText->SetFont(*leftPanelFont);
+    leftActivityNameText->SetFont(*mainFont);
+    leftActivityNameText->SetBackgroundColour(wxColour(153,255,255));
     leftActivityDescriptionText = new wxStaticText(subLeftPanel1,wxID_ANY,"Write activity description",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_VERTICAL);
-    leftActivityDescriptionText->SetFont(*leftPanelFont);
+    leftActivityDescriptionText->SetFont(*mainFont);
+    leftActivityDescriptionText->SetBackgroundColour(wxColour(153,255,255));
 
-    leftControlActivityNameText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input activity name",wxDefaultPosition,wxSize(150,27));
+    leftControlActivityNameText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input activity name",wxDefaultPosition,wxSize(150,50));
     leftControlActivityDescriptionText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Write activity description",wxDefaultPosition,wxSize(150,100));
 
-    subLeftPanel1HorizontalSizer7->Add(leftActivityNameText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer7->Add(leftActivityNameText);
     subLeftPanel1HorizontalSizer7->Add(leftControlActivityNameText,1, wxALL,2);
-    subLeftPanel1HorizontalSizer8->Add(leftActivityDescriptionText,1,wxALL,2);
+    subLeftPanel1HorizontalSizer8->Add(leftActivityDescriptionText,1);
     subLeftPanel1HorizontalSizer9->Add(leftControlActivityDescriptionText,1,wxALL,2);
 
-    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer7,1);
-    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer8,1,wxALIGN_CENTER_HORIZONTAL);
+    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer7,1,wxEXPAND,2);
+    subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer8,1,wxALIGN_CENTER_HORIZONTAL | wxEXPAND | wxALL ,4);
     subLeftPanel1MainSizer->Add(subLeftPanel1HorizontalSizer9,2,wxEXPAND);
 
 
 
     // CREATE SAVE BUTTON
     leftSaveButton = new wxButton(subLeftPanel1,wxID_ANY,"Save");
-    subLeftPanel1MainSizer->Add(leftSaveButton,1,wxEXPAND|wxALL,10);
+    subLeftPanel1MainSizer->Add(leftSaveButton,1,wxEXPAND | wxALL,10);
 
     // SET THE SIZER
     subLeftPanel1->SetSizer(subLeftPanel1MainSizer);
@@ -184,14 +194,22 @@ void MainFrame::setSubLeftPanel1Sizer() {
 
 
 void MainFrame::setSubRightPanel1Sizer() {
-    //SIZERS
+    // SIZERS
     subRightPanel1MainSizer = new wxBoxSizer(wxVERTICAL);                // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
     subRightPanel1HorizontalSizer1 = new wxBoxSizer(wxHORIZONTAL);
     subRightPanel1HorizontalSizer2 = new wxBoxSizer(wxHORIZONTAL);
 
 
 
-    //SEARCHED YEAR MOUNTH DAY IMPUT
+    // CREATE HEADER TEXT
+    rightHeaderText = new wxStaticText(subRightPanel1,wxID_ANY,"Search the activities",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
+    rightHeaderText->SetFont(*mainFont);
+    rightHeaderText->SetBackgroundColour(wxColor(102,255,102));
+    subRightPanel1MainSizer->Add(rightHeaderText,1,wxEXPAND | wxALL,4);
+
+
+
+    // SEARCHED YEAR MOUNTH DAY IMPUT
     rightYearText = new wxStaticText(subRightPanel1, wxID_ANY, "Year", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
     rightYearText->SetFont(*rightPanelFont);
     rightMonthText = new wxStaticText(subRightPanel1, wxID_ANY, "Month", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
@@ -199,26 +217,27 @@ void MainFrame::setSubRightPanel1Sizer() {
     rightDayText = new wxStaticText(subRightPanel1, wxID_ANY, "Day", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
     rightDayText->SetFont(*rightPanelFont);
 
-    rightControlYearText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Input the year",wxDefaultPosition,wxSize(110,25));
-    rightControlMonthText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Input the month",wxDefaultPosition,wxSize(125,25));
-    rightControlDayText = new wxTextCtrl(subRightPanel1, wxID_ANY, "Input the day", wxDefaultPosition, wxSize(110, 25));
+    rightControlYearText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Input the year",wxDefaultPosition,wxSize(110,27));
+    rightControlMonthText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Input the month",wxDefaultPosition,wxSize(125,27));
+    rightControlDayText = new wxTextCtrl(subRightPanel1, wxID_ANY, "Input the day", wxDefaultPosition, wxSize(110, 27));
 
-    subRightPanel1HorizontalSizer1->Add(rightYearText, wxSizerFlags().Proportion(1));
-    subRightPanel1HorizontalSizer1->Add(rightMonthText, wxSizerFlags().Proportion(1));
-    subRightPanel1HorizontalSizer1->Add(rightDayText, wxSizerFlags().Proportion(1));
-    subRightPanel1HorizontalSizer2->Add(rightControlYearText, wxSizerFlags().Proportion(1));
-    subRightPanel1HorizontalSizer2->Add(rightControlMonthText, wxSizerFlags().Proportion(1));
-    subRightPanel1HorizontalSizer2->Add(rightControlDayText, wxSizerFlags().Proportion(1));
+    subRightPanel1HorizontalSizer1->Add(rightYearText, 1);
+    subRightPanel1HorizontalSizer1->Add(rightMonthText, 1);
+    subRightPanel1HorizontalSizer1->Add(rightDayText, 1);
+    subRightPanel1HorizontalSizer2->Add(rightControlYearText, 1);
+    subRightPanel1HorizontalSizer2->Add(rightControlMonthText, 1);
+    subRightPanel1HorizontalSizer2->Add(rightControlDayText, 1);
 
-    subRightPanel1MainSizer->Add(subRightPanel1HorizontalSizer1, wxSizerFlags().Expand());
-    subRightPanel1MainSizer->Add(subRightPanel1HorizontalSizer2, wxSizerFlags().Expand());
+    subRightPanel1MainSizer->Add(subRightPanel1HorizontalSizer1, 1,wxEXPAND | wxALL,1);
+    subRightPanel1MainSizer->Add(subRightPanel1HorizontalSizer2, 1, wxEXPAND | wxALL,1);
 
 
 
-    //CREATE SEARCH BUTTON
+    // CREATE SEARCH BUTTON
     rightSearchButton = new wxButton(subRightPanel1,wxID_ANY,"Search activities");
-    subRightPanel1MainSizer->Add(rightSearchButton, wxSizerFlags().Expand());
+    subRightPanel1MainSizer->Add(rightSearchButton, 1,wxEXPAND | wxALL,2);
 
+    // SET THE SIZER
     subRightPanel1->SetSizer(subRightPanel1MainSizer);
     subRightPanel1MainSizer->SetSizeHints(subRightPanel1);
 }
@@ -267,7 +286,7 @@ void MainFrame::onRightSearchButtonCliked(wxCommandEvent(& evt)) {
                "Information", wxOK | wxICON_INFORMATION);
 
 
-    //   STRINGSTREAM
+    // STRINGSTREAM
 
     stringstream.str("");
     subRightPanel2->DestroyChildren();
@@ -275,7 +294,7 @@ void MainFrame::onRightSearchButtonCliked(wxCommandEvent(& evt)) {
     panel->SetScrollRate(0,10);
 
 
-    //     SIZERS
+    // SIZERS
     subRightPanel2Sizer = new wxBoxSizer(wxVERTICAL);
     auto scrollablePanelSizer = new wxBoxSizer(wxVERTICAL);
 

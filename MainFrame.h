@@ -62,6 +62,7 @@ private:
     wxTextCtrl* leftControlActivityDescriptionText;
 
     // LEFT PANEL STATIC TEXT
+    wxStaticText* leftHeaderText;
     wxStaticText* leftYearText;
     wxStaticText* leftMonthText;
     wxStaticText* leftDayText;
@@ -80,6 +81,7 @@ private:
     wxTextCtrl* rightControlDayText;
 
     // RIGHT PANEL STATIC TEXT
+    wxStaticText* rightHeaderText;
     wxStaticText* rightYearText;
     wxStaticText* rightMonthText;
     wxStaticText* rightDayText;
@@ -103,7 +105,6 @@ private:
     wxBoxSizer* subLeftPanel1HorizontalSizer7;
     wxBoxSizer* subLeftPanel1HorizontalSizer8;
     wxBoxSizer* subLeftPanel1HorizontalSizer9;
-    wxBoxSizer* subLeftPanel1HorizontalSizer10;
 
 
     // RIGHT PANEL SIZERS
@@ -112,7 +113,7 @@ private:
     wxBoxSizer* subRightPanel1HorizontalSizer1;
     wxBoxSizer* subRightPanel1HorizontalSizer2;
     wxBoxSizer* subRightPanel2Sizer;
-    int i=0;
+
 
     // STRING STREAM
     std::stringstream stringstream;
