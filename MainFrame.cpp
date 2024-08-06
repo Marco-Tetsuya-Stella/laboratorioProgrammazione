@@ -7,9 +7,7 @@
 
 
 MainFrame::MainFrame(const wxString &title) : wxFrame(nullptr,wxID_ANY, title) {
-
     createControls();
-
 }
 
 void MainFrame::createControls() {
@@ -18,15 +16,15 @@ void MainFrame::createControls() {
     leftPanelFont = new wxFont(wxFontInfo(15).Italic());
     rightPanelFont = new wxFont(wxFontInfo(16).Italic());
 
-    setSplitter();
 
+    setSplitter();
     setLeftPanelSizer();
     setSubLeftPanel1Sizer();
     setRightPanelSizer();
     setSubRightPanel1Sizer();
 
-   rightSearchButton->Bind(wxEVT_BUTTON,&MainFrame::onRightSearchButtonCliked,this);
-
+    leftSaveButton->Bind(wxEVT_BUTTON,&MainFrame::onLeftSaveButtonCliked,this);
+    rightSearchButton->Bind(wxEVT_BUTTON,&MainFrame::onRightSearchButtonCliked,this);
 }
 
 void MainFrame::setSplitter() {
@@ -81,17 +79,18 @@ void MainFrame::setSubLeftPanel1Sizer() {
     subLeftPanel1HorizontalSizer9 = new wxBoxSizer(wxHORIZONTAL);
     subLeftPanel1HorizontalSizer10 = new wxBoxSizer(wxHORIZONTAL);
 
+
     // YEAR MOUNTH DAY INPUT
-    leftYearText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start year : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftYearText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input start year : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
     leftYearText->SetFont(*leftPanelFont);
-    leftMonthText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start month : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftMonthText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input start month : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
     leftMonthText->SetFont(*leftPanelFont);
-    leftDayText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start day : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftDayText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input start day : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
     leftDayText->SetFont(*leftPanelFont);
 
-    leftControlYearText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start year",wxDefaultPosition,wxSize(150,25));
-    leftControlMonthText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start month",wxDefaultPosition,wxSize(150,25));
-    leftControlDayText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start day",wxDefaultPosition,wxSize(150,25));
+    leftControlYearText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input start year",wxDefaultPosition,wxSize(150,27));
+    leftControlMonthText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input start month",wxDefaultPosition,wxSize(150,27));
+    leftControlDayText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input start day",wxDefaultPosition,wxSize(150,27));
 
     subLeftPanel1HorizontalSizer1->Add(leftYearText,1,wxALL,2);
     subLeftPanel1HorizontalSizer1->Add(leftControlYearText,1,wxALL,2);
@@ -106,16 +105,16 @@ void MainFrame::setSubLeftPanel1Sizer() {
 
 
     // START HOUR MINUTE SECOND INPUT
-    leftStartHourText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start hour : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftStartHourText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input start hour : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
     leftStartHourText->SetFont(*leftPanelFont);
-    leftStartMinuteText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start mitute : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftStartMinuteText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input start mitute : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
     leftStartMinuteText->SetFont(*leftPanelFont);
-    leftStartSecondText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput start second : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftStartSecondText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input start second : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
     leftStartSecondText->SetFont(*leftPanelFont);
 
-    leftControlStartHourText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start hour",wxDefaultPosition,wxSize(150,25));
-    leftControlStartMinuteText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start minute",wxDefaultPosition,wxSize(150,25));
-    leftControlStartSecondText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput start second",wxDefaultPosition,wxSize(150,25));
+    leftControlStartHourText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input start hour",wxDefaultPosition,wxSize(150,27));
+    leftControlStartMinuteText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input start minute",wxDefaultPosition,wxSize(150,27));
+    leftControlStartSecondText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input start second",wxDefaultPosition,wxSize(150,27));
 
     subLeftPanel1HorizontalSizer3->Add(leftStartHourText,1,wxALL,2);
     subLeftPanel1HorizontalSizer3->Add(leftControlStartHourText,1,wxALL,2);
@@ -130,16 +129,16 @@ void MainFrame::setSubLeftPanel1Sizer() {
 
 
     // FINISH HOUR MINUTE SECOND INPUT
-    leftFinishHourText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput finish hour : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftFinishHourText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input finish hour : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
     leftFinishHourText->SetFont(*leftPanelFont);
-    leftFinishMinuteText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput finish mitute : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftFinishMinuteText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input finish mitute : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
     leftFinishMinuteText->SetFont(*leftPanelFont);
-    leftFinishSecondText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput finish second : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    leftFinishSecondText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input finish second : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
     leftFinishSecondText->SetFont(*leftPanelFont);
 
-    leftControlFinishHourText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput finish hour",wxDefaultPosition,wxSize(150,25));
-    leftControlFinishMinuteText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput finish minute",wxDefaultPosition,wxSize(150,25));
-    leftControlFinishSecondText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput finish second",wxDefaultPosition,wxSize(150,25));
+    leftControlFinishHourText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input finish hour",wxDefaultPosition,wxSize(150,27));
+    leftControlFinishMinuteText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input finish minute",wxDefaultPosition,wxSize(150,27));
+    leftControlFinishSecondText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input finish second",wxDefaultPosition,wxSize(150,27));
 
     subLeftPanel1HorizontalSizer5->Add(leftFinishHourText,1,wxALL,2);
     subLeftPanel1HorizontalSizer5->Add(leftControlFinishHourText,1,wxALL,2);
@@ -153,13 +152,13 @@ void MainFrame::setSubLeftPanel1Sizer() {
 
 
 
-    // ACTIVITY NAME AND DESCRIPTION IMPUT
-    leftActivityNameText = new wxStaticText(subLeftPanel1,wxID_ANY,"Imput activity name : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
+    // ACTIVITY NAME AND DESCRIPTION INPUT
+    leftActivityNameText = new wxStaticText(subLeftPanel1,wxID_ANY,"Input activity name : ",wxDefaultPosition,wxDefaultSize,wxALIGN_LEFT);
     leftActivityNameText->SetFont(*leftPanelFont);
     leftActivityDescriptionText = new wxStaticText(subLeftPanel1,wxID_ANY,"Write activity description",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_VERTICAL);
     leftActivityDescriptionText->SetFont(*leftPanelFont);
 
-    leftControlActivityNameText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Imput activity name",wxDefaultPosition,wxSize(150,25));
+    leftControlActivityNameText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input activity name",wxDefaultPosition,wxSize(150,27));
     leftControlActivityDescriptionText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Write activity description",wxDefaultPosition,wxSize(150,100));
 
     subLeftPanel1HorizontalSizer7->Add(leftActivityNameText,1,wxALL,2);
@@ -180,7 +179,6 @@ void MainFrame::setSubLeftPanel1Sizer() {
     // SET THE SIZER
     subLeftPanel1->SetSizer(subLeftPanel1MainSizer);
     subLeftPanel1MainSizer->SetSizeHints(subLeftPanel1);
-
 }
 
 
@@ -203,9 +201,9 @@ void MainFrame::setSubRightPanel1Sizer() {
     rightDayText = new wxStaticText(subRightPanel1, wxID_ANY, "Day", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
     rightDayText->SetFont(*rightPanelFont);
 
-    rightControlYearText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Imput the year",wxDefaultPosition,wxSize(150,25));
-    rightControlMonthText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Imput the month",wxDefaultPosition,wxSize(150,25));
-    rightControlDayText = new wxTextCtrl(subRightPanel1, wxID_ANY, "Imput the day", wxDefaultPosition, wxSize(150, 25));
+    rightControlYearText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Input the year",wxDefaultPosition,wxSize(150,25));
+    rightControlMonthText = new wxTextCtrl(subRightPanel1, wxID_ANY,"Input the month",wxDefaultPosition,wxSize(150,25));
+    rightControlDayText = new wxTextCtrl(subRightPanel1, wxID_ANY, "Input the day", wxDefaultPosition, wxSize(150, 25));
 
     subRightPanel1HorizontalSizer1->Add(rightYearText, wxSizerFlags().Proportion(1));
     subRightPanel1HorizontalSizer1->Add(rightMonthText, wxSizerFlags().Proportion(1));
@@ -225,66 +223,114 @@ void MainFrame::setSubRightPanel1Sizer() {
 
     subRightPanel1->SetSizer(subRightPanel1MainSizer);
     subRightPanel1MainSizer->SetSizeHints(subRightPanel1);
-
 }
 
+void MainFrame::onLeftSaveButtonCliked(wxCommandEvent &evt) {
+
+    std::string name = fromWxStringToString(leftControlActivityNameText);
+    std::string description = fromWxStringToString(leftControlActivityDescriptionText);
+
+    int year = atoi(leftControlYearText->GetValue());
+    int month = atoi(leftControlMonthText->GetValue());
+    int day = atoi(leftControlDayText->GetValue());
+    int startHour = atoi(leftControlStartHourText->GetValue());
+    int startMinute = atoi(leftControlStartMinuteText->GetValue());
+    int startSecond = atoi(leftControlStartSecondText->GetValue());
+    int finishHour = atoi(leftControlFinishHourText->GetValue());
+    int finishMinute = atoi(leftControlFinishMinuteText->GetValue());
+    int finishSecond = atoi(leftControlFinishSecondText->GetValue());
+
+    Date date(year,month,day);
+    Time startTime(startHour,startMinute,startSecond);
+    Time finishTime(finishHour,finishMinute,finishSecond);
+
+    Activity activity(name,description,date,startTime,finishTime);
+
+    activities.insert(activity);
+
+    wxMessageBox("Activity saved",
+                 "About Hello World", wxOK | wxICON_INFORMATION);
+}
+
+
 void MainFrame::onRightSearchButtonCliked(wxCommandEvent(& evt)) {
-   /* int y=0;
+    int y=0;
     int m=0;
     int d=0;
 
     y = atoi(rightControlYearText->GetValue());
-    m = atoi(controlMonthText->GetValue());
+    m = atoi(rightControlMonthText->GetValue());
     d = atoi(rightControlDayText->GetValue());
     Date date(y,m,d);
     std::multimap<Date,Activity>::iterator it = activities.returnDay(date);
     int countedDayActivities = activities.showQuantity(date);
 
-    /*wxMessageBox(" "+std::to_string(y)+" "+std::to_string(m),
-                 "About Hello World", wxOK | wxICON_INFORMATION);*/
+    wxMessageBox("Finded activities : "+std::to_string(countedDayActivities),
+               "Information", wxOK | wxICON_INFORMATION);
 
 
-    std::stringstream stringstream;
-    stringstream.clear();
-    stringstream <<"Activities : \n \n";
+    //   STRINGSTREAM
 
-   /* for(auto start=it; start!= std::next(it,countedDayActivities); start++){
-        stringstream <<" Name " << start->second.getName() << "\n"
-                    <<" Start time " << start->second.getStartTime().getHour() <<  " : " << start->second.getStartTime().getMinute()
-                    << " : " << start->second.getStartTime().getSecond() << "\n"
-                    << " Description " << start->second.getDescription() << "\n \n";
-    }*/
-
-    //Updte system. The activities are updated with each click
+    stringstream.str("");
     subRightPanel2->DestroyChildren();
     auto panel = new wxScrolled<wxPanel>(subRightPanel2,wxID_ANY,wxDefaultPosition,wxSize(subRightPanel2->GetSize()));
     panel->SetScrollRate(0,10);
 
+
+    //     SIZERS
+    subRightPanel2Sizer = new wxBoxSizer(wxVERTICAL);
     auto scrollablePanelSizer = new wxBoxSizer(wxVERTICAL);
 
-    scrollablePanelSizer->Add(panel,1,wxEXPAND);
+    subRightPanel2Sizer->Add(panel,1,wxEXPAND);
 
-    rightSubPanel2Sizer = new wxBoxSizer(wxVERTICAL);
-    //rightSubPanel2Sizer->Clear();
-    stringstream <<" Name " << "*******" << std::to_string(i) + " \n"
-                 <<" Start time " << "--------" <<  " : " << "----------------"
-                 << " : " << "---------------" << "\n"
-                 << " Description " << "**********" << "\n \n";
+    // HEADER TEXT
+    auto activityHeadrText = new wxStaticText(panel, wxID_ANY, "Activities : ");
+    scrollablePanelSizer->Add(activityHeadrText,0,wxALL,5);
 
-    for(int i=0; i<15; i++) {
+
+    // WRITE ACTIVITIES LIST
+    for(auto start=it; start!= std::next(it,countedDayActivities); start++){
+        stringstream.str("");
+        stringstream <<" Name : " << start->second.getName() << "\n"
+                     <<" Start time : " << start->second.getStartTime().getHour() <<  " / " << start->second.getStartTime().getMinute()
+                     << " / " << start->second.getStartTime().getSecond() << "\n"
+                     <<" Finish time : " << start->second.getFinishTime().getHour() <<  " / " << start->second.getFinishTime().getMinute()
+                     << " / " << start->second.getFinishTime().getSecond() << "\n"
+                     << " Description : " << start->second.getDescription() << "\n \n";
+
         wxString t;
         t = stringstream.str();
         activityText = new wxStaticText(panel, wxID_ANY, t);
-        rightSubPanel2Sizer->Add(activityText, 0,wxALL,5);
+        scrollablePanelSizer->Add(activityText, 0,wxALL,5);
     }
 
-    panel->SetSizer(rightSubPanel2Sizer);
 
-    subRightPanel2->SetSizer(scrollablePanelSizer);
-    i++;
-
+    // SET SIZERS
+    panel->SetSizer(scrollablePanelSizer);
+    subRightPanel2->SetSizer(subRightPanel2Sizer);
 }
 
+const std::string MainFrame::fromWxStringToString(wxTextCtrl* textCrtl) {
 
+    wxString wstr = textCrtl->GetValue();
+
+    // Calculating the length of the multibyte string
+    size_t len = wcstombs(nullptr, wstr.c_str(), 0) + 1;
+
+    // Creating a buffer to hold the multibyte string
+    char* buffer = new char[len];
+
+    // Converting wstring to string
+    wcstombs(buffer, wstr.c_str(), len);
+
+    // Creating std::string from char buffer
+    std::string str(buffer);
+
+    // Cleaning up the buffer
+    delete[] buffer;
+
+    // Returning the converted string
+    return str;
+}
 
 

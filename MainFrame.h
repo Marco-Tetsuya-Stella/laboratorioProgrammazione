@@ -22,9 +22,17 @@ private:
     void setLeftPanelSizer();
     void setSubLeftPanel1Sizer();
 
+
+
+
     void setRightPanelSizer();
     void setSubRightPanel1Sizer();
+
+
+    // BUTTONS CONTOL
+    void onLeftSaveButtonCliked(wxCommandEvent& evt);
     void onRightSearchButtonCliked(wxCommandEvent& evt);
+    const std::string fromWxStringToString(wxTextCtrl* textCtrl);
 
     //FONTS
     wxFont* mainFont;
@@ -110,12 +118,11 @@ private:
     wxBoxSizer* subRightPanel1MainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
     wxBoxSizer* subRightPanel1HorizontalSizer1;
     wxBoxSizer* subRightPanel1HorizontalSizer2;
-
-
-
-
-    wxBoxSizer* rightSubPanel2Sizer;
+    wxBoxSizer* subRightPanel2Sizer;
     int i=0;
+
+
+    std::stringstream stringstream;
 
     Register activities;
 
