@@ -20,6 +20,8 @@ private:
 
     // SET SPLITTER AND PANELS
     void createControls();
+    void setFonts();
+    void bindButtons();
     void setSplitter();
     void setLeftPanelSizer();
     void setSubLeftPanel1Sizer();

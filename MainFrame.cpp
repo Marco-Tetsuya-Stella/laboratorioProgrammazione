@@ -10,26 +10,28 @@ MainFrame::MainFrame(const wxString &title) : wxFrame(nullptr,wxID_ANY, title) {
     createControls();
 }
 
+
+
 void MainFrame::createControls() {
-
-    mainFont = new wxFont(wxFontInfo(25).Bold());
-    leftPanelFont = new wxFont(wxFontInfo(15).Italic());
-    rightPanelFont = new wxFont(wxFontInfo(16).Italic());
-
+    setFonts();
     setSplitter();
     setLeftPanelSizer();
     setSubLeftPanel1Sizer();
     setSubLeftPanel2Sizer();
     setRightPanelSizer();
     setSubRightPanel1Sizer();
-
-    leftSaveButton->Bind(wxEVT_BUTTON,&MainFrame::onLeftSaveButtonCliked,this);
-    leftDeleteDayButton->Bind(wxEVT_BUTTON,&MainFrame::onLeftDeleteDayButtonCliked,this);
-    leftDeleteNameButton->Bind(wxEVT_BUTTON,&MainFrame::onLeftDeleteNameButtonCliked,this);
-    rightSearchButton->Bind(wxEVT_BUTTON,&MainFrame::onRightSearchButtonCliked,this);
-
-
+    bindButtons();
 }
+
+
+
+void MainFrame::setFonts() {
+    mainFont = new wxFont(wxFontInfo(25).Bold());
+    leftPanelFont = new wxFont(wxFontInfo(15).Italic());
+    rightPanelFont = new wxFont(wxFontInfo(16).Italic());
+}
+
+
 
 void MainFrame::setSplitter() {
     splitter = new wxSplitterWindow(this,wxID_ANY,wxDefaultPosition,wxDefaultSize,wxSP_BORDER | wxSP_LIVE_UPDATE);
@@ -41,11 +43,13 @@ void MainFrame::setSplitter() {
     splitter->SetMinimumPaneSize(710);
 }
 
+
+
 void MainFrame::setLeftPanelSizer() {
     subLeftPanel1 = new wxPanel(leftPanel,wxID_ANY,wxDefaultPosition,wxSize(200,100));
     subLeftPanel2 = new wxPanel(leftPanel,wxID_ANY,wxDefaultPosition,wxSize(200,100));
     subLeftPanel1->SetBackgroundColour(wxColour(204,255,255));
-    subLeftPanel2->SetBackgroundColour(wxColour(255,255,255));
+    subLeftPanel2->SetBackgroundColour(wxColour(204,255,255));
 
     leftPanelSizer = new wxBoxSizer(wxVERTICAL);
     leftPanelSizer->Add(subLeftPanel1,5,wxEXPAND | wxALL,5);
@@ -54,6 +58,8 @@ void MainFrame::setLeftPanelSizer() {
     leftPanel->SetSizer(leftPanelSizer);
     leftPanelSizer->SetSizeHints(leftPanel);
 }
+
+
 
 void MainFrame::setRightPanelSizer() {
     subRightPanel1 = new wxPanel(rightPanel,wxID_ANY,wxDefaultPosition,wxSize(200,100));
@@ -68,6 +74,8 @@ void MainFrame::setRightPanelSizer() {
     rightPanel->SetSizer(rightPanelSizer);
     rightPanelSizer->SetSizeHints(rightPanel);
 }
+
+
 
 void MainFrame::setSubLeftPanel1Sizer() {
     // SIZERS
@@ -172,7 +180,7 @@ void MainFrame::setSubLeftPanel1Sizer() {
     leftActivityDescriptionText->SetFont(*mainFont);
     leftActivityDescriptionText->SetBackgroundColour(wxColour(153,255,255));
 
-    leftControlActivityNameText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input activity name",wxDefaultPosition,wxSize(150,50));
+    leftControlActivityNameText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Input activity name",wxDefaultPosition,wxSize(150,37));
     leftControlActivityDescriptionText = new wxTextCtrl(subLeftPanel1,wxID_ANY,"Write activity description",wxDefaultPosition,wxSize(150,100));
 
     subLeftPanel1HorizontalSizer7->Add(leftActivityNameText);
@@ -246,6 +254,8 @@ void MainFrame::setSubRightPanel1Sizer() {
     subRightPanel1MainSizer->SetSizeHints(subRightPanel1);
 }
 
+
+
 void MainFrame::setSubLeftPanel2Sizer() {
 
     // SIZERS
@@ -307,8 +317,6 @@ subLeftPanel2MainSizer->Add(leftDeleteActivityHeaderText,0, wxEXPAND | wxALL,4);
 
 
 
-
-
 void MainFrame::onLeftSaveButtonCliked(wxCommandEvent &evt) {
 
     std::string name = fromWxStringToString(leftControlActivityNameText);
@@ -336,15 +344,42 @@ void MainFrame::onLeftSaveButtonCliked(wxCommandEvent &evt) {
                  "Information", wxOK | wxICON_INFORMATION);
 }
 
+
+
 void MainFrame::onLeftDeleteDayButtonCliked(wxCommandEvent &evt) {
+    // FIND THE ACTIVITIES
+    int y=0;
+    int m=0;
+    int d=0;
 
+    y = atoi(leftControlDeleteActivityYearText->GetValue());
+    m = atoi(leftControlDeleteActivityMonthText->GetValue());
+    d = atoi(leftControlDeleteActivityDayText->GetValue());
+    Date date(y,m,d);
+    std::string deleteMessage = activities.deleteDay(date);
 
+    wxMessageBox(deleteMessage,
+                 "Information", wxOK | wxICON_INFORMATION);
 }
 
+
+
 void MainFrame::onLeftDeleteNameButtonCliked(wxCommandEvent &evt) {
+    // FIND THE ACTIVITIES
+    int y=0;
+    int m=0;
+    int d=0;
 
+    y = atoi(leftControlDeleteActivityYearText->GetValue());
+    m = atoi(leftControlDeleteActivityMonthText->GetValue());
+    d = atoi(leftControlDeleteActivityDayText->GetValue());
+    Date date(y,m,d);
+    std::string name = fromWxStringToString(leftControlDeleteActivityNameText);
 
+    std::string deleteMessage = activities.deleteActivity(date,name);
 
+    wxMessageBox(deleteMessage,
+                 "Information", wxOK | wxICON_INFORMATION);
 }
 
 
@@ -405,6 +440,17 @@ void MainFrame::onRightSearchButtonCliked(wxCommandEvent(& evt)) {
     panel->SetSizer(scrollablePanelSizer);
     subRightPanel2->SetSizer(subRightPanel2Sizer);
 }
+
+
+
+void MainFrame::bindButtons() {
+    leftSaveButton->Bind(wxEVT_BUTTON,&MainFrame::onLeftSaveButtonCliked,this);
+    leftDeleteDayButton->Bind(wxEVT_BUTTON,&MainFrame::onLeftDeleteDayButtonCliked,this);
+    leftDeleteNameButton->Bind(wxEVT_BUTTON,&MainFrame::onLeftDeleteNameButtonCliked,this);
+    rightSearchButton->Bind(wxEVT_BUTTON,&MainFrame::onRightSearchButtonCliked,this);
+}
+
+
 
 const std::string MainFrame::fromWxStringToString(wxTextCtrl* textCrtl) {
 
