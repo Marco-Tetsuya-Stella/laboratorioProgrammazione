@@ -16,15 +16,19 @@ void MainFrame::createControls() {
     leftPanelFont = new wxFont(wxFontInfo(15).Italic());
     rightPanelFont = new wxFont(wxFontInfo(16).Italic());
 
-
     setSplitter();
     setLeftPanelSizer();
     setSubLeftPanel1Sizer();
+    setSubLeftPanel2Sizer();
     setRightPanelSizer();
     setSubRightPanel1Sizer();
 
     leftSaveButton->Bind(wxEVT_BUTTON,&MainFrame::onLeftSaveButtonCliked,this);
+    leftDeleteDayButton->Bind(wxEVT_BUTTON,&MainFrame::onLeftDeleteDayButtonCliked,this);
+    leftDeleteNameButton->Bind(wxEVT_BUTTON,&MainFrame::onLeftDeleteNameButtonCliked,this);
     rightSearchButton->Bind(wxEVT_BUTTON,&MainFrame::onRightSearchButtonCliked,this);
+
+
 }
 
 void MainFrame::setSplitter() {
@@ -44,8 +48,8 @@ void MainFrame::setLeftPanelSizer() {
     subLeftPanel2->SetBackgroundColour(wxColour(255,255,255));
 
     leftPanelSizer = new wxBoxSizer(wxVERTICAL);
-    leftPanelSizer->Add(subLeftPanel1,4,wxEXPAND | wxALL,5);
-    leftPanelSizer->Add(subLeftPanel2,1,wxEXPAND | wxALL,5);
+    leftPanelSizer->Add(subLeftPanel1,5,wxEXPAND | wxALL,5);
+    leftPanelSizer->Add(subLeftPanel2,2,wxEXPAND | wxALL,5);
 
     leftPanel->SetSizer(leftPanelSizer);
     leftPanelSizer->SetSizeHints(leftPanel);
@@ -84,7 +88,7 @@ void MainFrame::setSubLeftPanel1Sizer() {
     leftHeaderText = new wxStaticText(subLeftPanel1,wxID_ANY,"Create activity",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
     leftHeaderText->SetFont(*mainFont);
     leftHeaderText->SetBackgroundColour(wxColour(153,255,255));
-    subLeftPanel1MainSizer->Add(leftHeaderText,1,wxEXPAND | wxALL ,4);
+    subLeftPanel1MainSizer->Add(leftHeaderText,0,wxEXPAND | wxALL ,4);
 
 
 
@@ -205,7 +209,7 @@ void MainFrame::setSubRightPanel1Sizer() {
     rightHeaderText = new wxStaticText(subRightPanel1,wxID_ANY,"Search the activities",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
     rightHeaderText->SetFont(*mainFont);
     rightHeaderText->SetBackgroundColour(wxColor(102,255,102));
-    subRightPanel1MainSizer->Add(rightHeaderText,1,wxEXPAND | wxALL,4);
+    subRightPanel1MainSizer->Add(rightHeaderText,0,wxEXPAND | wxALL,4);
 
 
 
@@ -242,6 +246,69 @@ void MainFrame::setSubRightPanel1Sizer() {
     subRightPanel1MainSizer->SetSizeHints(subRightPanel1);
 }
 
+void MainFrame::setSubLeftPanel2Sizer() {
+
+    // SIZERS
+    subLeftPanel2MainSizer = new wxBoxSizer(wxVERTICAL);                // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
+    subLeftPanel2HorizontalSizer1 = new wxBoxSizer(wxHORIZONTAL);
+    subLeftPanel2HorizontalSizer2 = new wxBoxSizer(wxHORIZONTAL);
+    subLeftPanel2HorizontalSizer3 = new wxBoxSizer(wxHORIZONTAL);
+
+
+
+    // CREATE HEADER TEXT
+    leftDeleteActivityHeaderText = new wxStaticText(subLeftPanel2,wxID_ANY,"Delete the activities",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
+    leftDeleteActivityHeaderText->SetFont(*mainFont);
+    leftDeleteActivityHeaderText->SetBackgroundColour(wxColor(153,255,255));
+subLeftPanel2MainSizer->Add(leftDeleteActivityHeaderText,0, wxEXPAND | wxALL,4);
+
+
+
+    // DELETED YEAR MOUNTH DAY NAME IMPUT
+    leftDeleteActivityYearText = new wxStaticText(subLeftPanel2, wxID_ANY, "Year", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
+    leftDeleteActivityYearText->SetFont(*leftPanelFont);
+    leftDeleteActivityMonthText = new wxStaticText(subLeftPanel2, wxID_ANY, "Month", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
+    leftDeleteActivityMonthText->SetFont(*leftPanelFont);
+    leftDeleteActivityDayText = new wxStaticText(subLeftPanel2, wxID_ANY, "Day", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
+    leftDeleteActivityDayText->SetFont(*leftPanelFont);
+    leftDeleteActivityNameText = new wxStaticText(subLeftPanel2, wxID_ANY, "Name", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTER_HORIZONTAL);
+    leftDeleteActivityNameText->SetFont(*leftPanelFont);
+
+    leftControlDeleteActivityYearText = new wxTextCtrl(subLeftPanel2, wxID_ANY,"Input the year",wxDefaultPosition,wxSize(110,27));
+    leftControlDeleteActivityMonthText = new wxTextCtrl(subLeftPanel2, wxID_ANY,"Input the month",wxDefaultPosition,wxSize(125,27));
+    leftControlDeleteActivityDayText = new wxTextCtrl(subLeftPanel2, wxID_ANY, "Input the day", wxDefaultPosition, wxSize(110, 27));
+    leftControlDeleteActivityNameText = new wxTextCtrl(subLeftPanel2, wxID_ANY, "Input the name", wxDefaultPosition, wxSize(110, 27));
+
+    subLeftPanel2HorizontalSizer1->Add(leftDeleteActivityYearText, 1);
+    subLeftPanel2HorizontalSizer1->Add(leftDeleteActivityMonthText, 1);
+    subLeftPanel2HorizontalSizer1->Add(leftDeleteActivityDayText, 1);
+    subLeftPanel2HorizontalSizer1->Add(leftDeleteActivityNameText,1);
+    subLeftPanel2HorizontalSizer2->Add(leftControlDeleteActivityYearText, 1);
+    subLeftPanel2HorizontalSizer2->Add(leftControlDeleteActivityMonthText, 1);
+    subLeftPanel2HorizontalSizer2->Add(leftControlDeleteActivityDayText, 1);
+    subLeftPanel2HorizontalSizer2->Add(leftControlDeleteActivityNameText,1);
+
+    subLeftPanel2MainSizer->Add(subLeftPanel2HorizontalSizer1, 1,wxEXPAND | wxALL,1);
+    subLeftPanel2MainSizer->Add(subLeftPanel2HorizontalSizer2, 1, wxEXPAND | wxALL,1);
+
+
+
+    // CREATE BUTTONS
+    leftDeleteDayButton = new wxButton(subLeftPanel2,wxID_ANY,"Delete all day activities");
+    leftDeleteNameButton= new wxButton(subLeftPanel2,wxID_ANY,"Delete activity by day and name");
+    subLeftPanel2HorizontalSizer3->Add(leftDeleteDayButton,1,wxALL,1);
+    subLeftPanel2HorizontalSizer3->Add(leftDeleteNameButton,1,wxALL,1);
+    subLeftPanel2MainSizer->Add(subLeftPanel2HorizontalSizer3,1,wxEXPAND|wxALL,1);
+
+    // SET THE SIZER
+    subLeftPanel2->SetSizer(subLeftPanel2MainSizer);
+    subLeftPanel2MainSizer->SetSizeHints(subLeftPanel2);
+}
+
+
+
+
+
 void MainFrame::onLeftSaveButtonCliked(wxCommandEvent &evt) {
 
     std::string name = fromWxStringToString(leftControlActivityNameText);
@@ -269,8 +336,21 @@ void MainFrame::onLeftSaveButtonCliked(wxCommandEvent &evt) {
                  "Information", wxOK | wxICON_INFORMATION);
 }
 
+void MainFrame::onLeftDeleteDayButtonCliked(wxCommandEvent &evt) {
+
+
+}
+
+void MainFrame::onLeftDeleteNameButtonCliked(wxCommandEvent &evt) {
+
+
+
+}
+
+
 
 void MainFrame::onRightSearchButtonCliked(wxCommandEvent(& evt)) {
+    // FIND THE ACTIVITIES
     int y=0;
     int m=0;
     int d=0;
@@ -287,7 +367,6 @@ void MainFrame::onRightSearchButtonCliked(wxCommandEvent(& evt)) {
 
 
     // STRINGSTREAM
-
     stringstream.str("");
     subRightPanel2->DestroyChildren();
     auto panel = new wxScrolled<wxPanel>(subRightPanel2,wxID_ANY,wxDefaultPosition,wxSize(subRightPanel2->GetSize()));

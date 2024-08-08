@@ -23,12 +23,15 @@ private:
     void setSplitter();
     void setLeftPanelSizer();
     void setSubLeftPanel1Sizer();
+    void setSubLeftPanel2Sizer();
     void setRightPanelSizer();
     void setSubRightPanel1Sizer();
 
 
     // BUTTONS CONTOL  FUNCTIONS
     void onLeftSaveButtonCliked(wxCommandEvent& evt);
+    void onLeftDeleteDayButtonCliked(wxCommandEvent& evt);
+    void onLeftDeleteNameButtonCliked(wxCommandEvent& evt);
     void onRightSearchButtonCliked(wxCommandEvent& evt);
     const std::string fromWxStringToString(wxTextCtrl* textCtrl);
 
@@ -61,6 +64,13 @@ private:
     wxTextCtrl* leftControlActivityNameText;
     wxTextCtrl* leftControlActivityDescriptionText;
 
+    wxTextCtrl* leftControlDeleteActivityYearText;
+    wxTextCtrl* leftControlDeleteActivityMonthText;
+    wxTextCtrl* leftControlDeleteActivityDayText;
+    wxTextCtrl* leftControlDeleteActivityNameText;
+
+
+
     // LEFT PANEL STATIC TEXT
     wxStaticText* leftHeaderText;
     wxStaticText* leftYearText;
@@ -74,6 +84,14 @@ private:
     wxStaticText* leftFinishSecondText;
     wxStaticText* leftActivityNameText;
     wxStaticText* leftActivityDescriptionText;
+
+    wxStaticText* leftDeleteActivityHeaderText;
+    wxStaticText* leftDeleteActivityYearText;
+    wxStaticText* leftDeleteActivityMonthText;
+    wxStaticText* leftDeleteActivityDayText;
+    wxStaticText* leftDeleteActivityNameText;
+
+
 
     // RIGHT PANEL CONTROLLABLE TEXT
     wxTextCtrl* rightControlYearText;
@@ -89,6 +107,10 @@ private:
 
     // LEFT PANEL BUTTONS
     wxButton* leftSaveButton;
+    wxButton* leftDeleteDayButton;
+    wxButton* leftDeleteNameButton;
+
+
 
     // RIGHT PANEL BUTTONS
     wxButton* rightSearchButton;
@@ -105,6 +127,13 @@ private:
     wxBoxSizer* subLeftPanel1HorizontalSizer7;
     wxBoxSizer* subLeftPanel1HorizontalSizer8;
     wxBoxSizer* subLeftPanel1HorizontalSizer9;
+
+    wxBoxSizer* subLeftPanel2MainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
+    wxBoxSizer* subLeftPanel2HorizontalSizer1;
+    wxBoxSizer* subLeftPanel2HorizontalSizer2;
+    wxBoxSizer* subLeftPanel2HorizontalSizer3;
+
+
 
 
     // RIGHT PANEL SIZERS

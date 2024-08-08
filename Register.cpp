@@ -67,5 +67,54 @@ int Register::showQuantity(Date &d) {
     return countedDayActivities;
 }
 
+std::string Register::deleteDay(Date &d) {
+    std::string result = "";
+    int countedDayActivities = activities.count(d);
 
+    if(countedDayActivities > 0) {
+        auto it = activities.find(d);
+        activities.erase(it , std::next(it,countedDayActivities));
+        std::cout << " All activities of that day deleted " << std::endl;
+        result = "All activities of that day deleted";
+    }
+    else
+    {
+        std::cout << " There isn't saved activity on that day " << std::endl;
+        result = "There isn't saved activity on that day";
+    }
+    return result;
+}
 
+std::string Register::deleteActivity(Date &d, const std::string &name) {
+    std::stringstream stringstreamResult;
+    stringstreamResult.str("");
+    std::multimap<Date,Activity>::iterator deleteElement;
+    bool find = false;
+
+    std::string result = "There isn't activity with that name";
+    int countedDayActivities = activities.count(d);
+    if(countedDayActivities > 0) {
+        auto it = activities.find(d);
+
+        for(auto start = it ; start != std::next(it,countedDayActivities) ; start++){
+            if( start->second.getName() == name ){
+                deleteElement = start;
+                find = true;
+            }
+        }
+    }
+    else
+    {
+        std::cout << " There isn't saved activity on that day " << std::endl;
+        result = "There isn't saved activity on that day";
+    }
+
+    if(find){
+        activities.erase(deleteElement);
+        std::cout << " Activity " << name << " deleted " << std::endl;
+        stringstreamResult << " Activity " << name << " deleted ";
+        result = stringstreamResult.str();
+
+    }
+    return result;
+}

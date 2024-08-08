@@ -8,14 +8,19 @@
 #include <map>
 #include "Date.h"
 #include "Activity.h"
+#include <string>
+#include <sstream>
 
 class Register {
 public:
     //functions
     std::string insert(Activity& a);
     void showDay(Date& d)const;
-    std::multimap<Date,Activity>::iterator returnDay(Date& d );
+    std::multimap<Date,Activity>::iterator returnDay(Date& d);
     int showQuantity(Date& d);
+    std::string deleteDay(Date& d);
+    std::string deleteActivity(Date& d,const std::string& name);
+
 
 
 private:

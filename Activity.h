@@ -32,7 +32,6 @@ public:
     //functions
     void show() const;
 
-
 private:
     std::string name=" ";
     std::string description=" ";

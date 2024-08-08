@@ -22,8 +22,6 @@ public:
     //operator
     bool operator<(const Time& orig) const;
 
-
-
     //functions
     void show() const;
 
