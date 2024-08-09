@@ -78,7 +78,7 @@ std::string Register::deleteActivity(Date &d, const std::string &name) {
     std::multimap<Date,Activity>::iterator deleteElement;
     bool find = false;
 
-    std::string result = "There isn't activity with that name";
+    std::string result = "";
     int countedDayActivities = activities.count(d);
     if(countedDayActivities > 0) {
         auto it = activities.find(d);
@@ -89,19 +89,23 @@ std::string Register::deleteActivity(Date &d, const std::string &name) {
                 find = true;
             }
         }
+
+        if(find){
+            activities.erase(deleteElement);
+            std::cout << " Activity " << name << " deleted " << std::endl;
+            stringstreamResult << "Activity " << name << " deleted";
+            result = stringstreamResult.str();
+        }
+        else
+        {
+            std::cout << " There isn't activity with that name " << std::endl;
+            result = "There isn't activity with that name";
+        }
     }
     else
     {
         std::cout << " There isn't saved activity on that day " << std::endl;
         result = "There isn't saved activity on that day";
-    }
-
-    if(find){
-        activities.erase(deleteElement);
-        std::cout << " Activity " << name << " deleted " << std::endl;
-        stringstreamResult << " Activity " << name << " deleted ";
-        result = stringstreamResult.str();
-
     }
     return result;
 }
