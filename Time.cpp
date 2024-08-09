@@ -13,7 +13,7 @@ Time::Time(int h, int m, int s) {
 
 //getter and setter
 void Time::setHour(int h) {
-    if( h<0 or h>24 ) {
+    if( h<0 or h>23 ) {
         std::cout << "Hour is invalid a default parameter will be applied " << std::endl;
         hour=-1;
     }
@@ -24,7 +24,7 @@ void Time::setHour(int h) {
 }
 
 void Time::setMinute(int m) {
-    if( m<0 or m>60 ) {
+    if( m<0 or m>59 ) {
         std::cout << "Minute is invalid a default parameter will be applied " << std::endl;
         minute=-1;
     }
@@ -35,7 +35,7 @@ void Time::setMinute(int m) {
 }
 
 void Time::setSecond(int s) {
-    if( s<0 or s>60 ) {
+    if( s<0 or s>59 ) {
         std::cout << "Second is invalid a default parameter will be applied " << std::endl;
         second=-1;
     }

@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(wxWidgets REQUIRED COMPONENTS net core base)
 include(${wxWidgets_USE_FILE})
 
-#add_subdirectory(test)
+add_subdirectory(test)
 
 set(SOURCE_FILES Date.cpp
         Date.h
