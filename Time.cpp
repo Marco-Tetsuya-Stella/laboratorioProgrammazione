@@ -82,7 +82,9 @@ bool Time::operator<(const Time &orig) const {
     return result;
 }
 
-
+bool Time::operator==(const Time &orig) const {
+    return hour == orig.hour  and  minute == orig.minute  and  second == orig.second;
+}
 
 
 

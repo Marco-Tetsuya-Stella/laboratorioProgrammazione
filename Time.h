@@ -21,6 +21,7 @@ public:
 
     //operator
     bool operator<(const Time& orig) const;
+    bool operator==(const Time& orig) const;
 
 private:
     int hour=0;

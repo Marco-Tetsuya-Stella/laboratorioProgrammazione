@@ -46,7 +46,7 @@ TEST(Time,Constructor) {
 TEST(Time,Operators) {
     Time time1(12,12,12);
     Time time2(12,12,12);
-
+    ASSERT_TRUE(time1 == time2);
     ASSERT_FALSE(time1 < time2);
     time2.setSecond(13);
     ASSERT_TRUE(time1 < time2);
