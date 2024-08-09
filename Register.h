@@ -15,7 +15,6 @@ class Register {
 public:
     //functions
     std::string insert(Activity& a);
-    void showDay(Date& d)const;
     std::multimap<Date,Activity>::iterator returnDay(Date& d);
     int showQuantity(Date& d);
     std::string deleteDay(Date& d);

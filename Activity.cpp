@@ -52,18 +52,5 @@ void Activity::setFinishTime(const Time &finishTime) {
     Activity::finishTime = finishTime;
 }
 
-//functions
-void Activity::show() const{
-    std::cout << "Name : " << name << std::endl << std::endl;
-    std::cout << "Start : " << std::endl;
-    startDay.show();
-    startTime.show();
-    std::cout<<std::endl;
-    std::cout << "Finish : " << std::endl;
-    finishTime.show();
-    std::cout<<std::endl;
-    std::cout << "Description : " << description << std::endl << std::endl;
-}
-
 
 

@@ -29,9 +29,6 @@ public:
     const Time &getFinishTime() const;
     void setFinishTime(const Time &finishTime);
 
-    //functions
-    void show() const;
-
 private:
     std::string name=" ";
     std::string description=" ";

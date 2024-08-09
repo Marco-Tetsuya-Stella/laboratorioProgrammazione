@@ -85,15 +85,6 @@ bool Time::operator<(const Time &orig) const {
 
 
 
-//functions
-void Time::show() const{
-    std::cout << "Hour : " << hour << std::endl
-              << "Minute : " << minute << std::endl
-              << "Second : " << second << std::endl;
-}
-
-
-
 
 
 

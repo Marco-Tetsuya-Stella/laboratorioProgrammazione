@@ -109,7 +109,6 @@ int Date::getDay() const {
 }
 
 //operators
-
 bool Date::operator==(const Date &orig) const {
     return year==orig.year && month==orig.month && day==orig.day;
 }
@@ -136,13 +135,6 @@ bool Date::operator<(const Date &orig) const {
         }
     }
     return result;
-}
-
-//functions
-void Date::show() const {
-    std::cout << "Year : " << year << std::endl
-              << "Month : " << month << std::endl
-              << "Day : " << day <<std::endl;
 }
 
 //private functions

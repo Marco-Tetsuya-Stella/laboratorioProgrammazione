@@ -26,9 +26,6 @@ public:
     bool operator==(const Date& orig) const;
     bool operator<(const Date& orig) const;
 
-    //functions
-    void show() const;
-
 private:
 
     void setThirtyDay(int d);

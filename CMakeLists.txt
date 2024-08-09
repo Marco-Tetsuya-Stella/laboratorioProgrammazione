@@ -5,8 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(wxWidgets REQUIRED COMPONENTS net core base)
 include(${wxWidgets_USE_FILE})
 
-add_executable(elaborato_laboratorio_di_programmazione main.cpp
-        Date.cpp
+#add_subdirectory(test)
+
+set(SOURCE_FILES Date.cpp
         Date.h
         Activity.cpp
         Activity.h
@@ -14,12 +15,13 @@ add_executable(elaborato_laboratorio_di_programmazione main.cpp
         Time.h
         Register.cpp
         Register.h
-        MainFrame.cpp
-        MainFrame.h
-        App.cpp
         App.h
+        MainFrame.cpp
+        MainFrame.h)
 
-)
+add_executable(elaborato_laboratorio_di_programmazione App.cpp)
+add_library(core ${SOURCE_FILES})
+target_link_libraries(elaborato_laboratorio_di_programmazione core)
 
 target_link_libraries(elaborato_laboratorio_di_programmazione ${wxWidgets_LIBRARIES})
 

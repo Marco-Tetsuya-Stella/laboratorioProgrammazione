@@ -42,19 +42,6 @@ std::string Register::insert(Activity &a) {
     return returnMessage;
 }
 
-void Register::showDay(Date &d) const {
-
-    auto it = activities.find(d);
-    if (it == activities.end())
-        std::cout << " Didn't find the day " << std::endl;
-    else {
-        int countedDayActivities = activities.count(d);
-        for (auto start = it; start != std::next(it, countedDayActivities); start++) {
-            start->second.show();
-        }
-    }
-}
-
 std::multimap<Date,Activity>::iterator Register::returnDay(Date &d) {
 
     std::multimap<Date,Activity>::iterator it = activities.find(d);

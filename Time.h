@@ -22,9 +22,6 @@ public:
     //operator
     bool operator<(const Time& orig) const;
 
-    //functions
-    void show() const;
-
 private:
     int hour=0;
     int minute=0;
