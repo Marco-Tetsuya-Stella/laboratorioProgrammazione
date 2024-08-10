@@ -20,8 +20,6 @@ public:
     std::string deleteDay(Date& d);
     std::string deleteActivity(Date& d,const std::string& name);
 
-
-
 private:
     std::multimap<Date,Activity> activities;
 };

@@ -8,6 +8,7 @@ set(TEST_SOURCE_FILES Tests.cpp DateTest.cpp
         TimeTest.cpp
         ActivityTest.cpp
         RegisterTest.cpp
-        TimeFixture.cpp)
+        TimeFixture.cpp
+        DateFixture.cpp)
 add_executable(runTests ${TEST_SOURCE_FILES})
 target_link_libraries(runTests gtest gtest_main core)

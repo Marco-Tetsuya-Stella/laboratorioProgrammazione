@@ -33,6 +33,22 @@ TEST(Date,Constructor) {
     ASSERT_EQ(date4.getYear(),01);
     ASSERT_EQ(date4.getMonth(),01);
     ASSERT_EQ(date4.getDay(),01);
+
+    Date date5(0,0,0);
+    ASSERT_EQ(date5.getYear(),0);
+    ASSERT_EQ(date5.getMonth(),-1);
+    ASSERT_EQ(date5.getDay(),-1);
+
+    Date date6(0);
+    ASSERT_EQ(date6.getYear(),0);
+    ASSERT_EQ(date6.getMonth(),1);
+    ASSERT_EQ(date6.getDay(),1);
+
+    Date date7;
+    ASSERT_EQ(date7.getYear(),0);
+    ASSERT_EQ(date7.getMonth(),1);
+    ASSERT_EQ(date7.getDay(),1);
+
 }
 
 TEST(Date,Operators) {
