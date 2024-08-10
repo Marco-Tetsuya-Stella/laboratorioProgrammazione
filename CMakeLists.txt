@@ -7,7 +7,8 @@ include(${wxWidgets_USE_FILE})
 
 add_subdirectory(test)
 
-set(SOURCE_FILES Date.cpp
+set(SOURCE_FILES
+        Date.cpp
         Date.h
         Activity.cpp
         Activity.h
