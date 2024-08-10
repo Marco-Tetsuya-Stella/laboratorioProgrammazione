@@ -11,7 +11,9 @@ Date::Date(int y, int m, int d) {
     setDay(d);
 }
 
-void Date::setYear(int y) {
+
+// SETTER AND GETTER
+void Date::setYear(const int& y) {
     if(y<0) {
         std::cout << " Year is invalid a default parameter will be applied " << std::endl;
         year = -1;
@@ -22,7 +24,7 @@ void Date::setYear(int y) {
     }
 }
 
-void Date::setMonth(int m) {
+void Date::setMonth(const int& m) {
     if(m<1 or m>12 or year==-1) {
         std::cout << " Month is invalid a default parameter will be applied " << std::endl;
         month=-1;
@@ -33,7 +35,7 @@ void Date::setMonth(int m) {
     }
 }
 
-void Date::setDay(int d) {
+void Date::setDay(const int& d) {
     if( d<1 or d>31){
         std::cout << " Day is invalid a default parameter will be applied " << std::endl;
         day = -1;
@@ -96,19 +98,19 @@ void Date::setDay(int d) {
     }
 }
 
-int Date::getYear() const {
+const int& Date::getYear() const {
     return year;
 }
 
-int Date::getMonth() const {
+const int& Date::getMonth() const {
     return month;
 }
 
-int Date::getDay() const {
+const int& Date::getDay() const {
     return day;
 }
 
-//operators
+// OPERATORS
 bool Date::operator==(const Date &orig) const {
     return year==orig.year && month==orig.month && day==orig.day;
 }
@@ -137,7 +139,7 @@ bool Date::operator<(const Date &orig) const {
     return result;
 }
 
-//private functions
+// PRIVATE FUNCTIONS
 void Date::setThirtyOneDay(int d) {
     day=d;
 }

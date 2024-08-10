@@ -11,7 +11,7 @@ Activity::Activity(const std::string &n, const std::string &d, const Date &sD, c
 
 
 
-// getter and setter
+// GETTER AND SETTER
 const std::string &Activity::getName() const {
     return name;
 }

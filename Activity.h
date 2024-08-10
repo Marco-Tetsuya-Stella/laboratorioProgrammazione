@@ -9,11 +9,10 @@
 
 
 class Activity {
-
 public:
     explicit Activity(const std::string& n, const std::string& d, const Date& sD ,const Time& sT, const Time& fT);
 
-    //getter and setter
+    // GETTER AND SETTER
     const std::string &getName() const;
     void setName(const std::string &name);
 
@@ -36,7 +35,6 @@ private:
     Date startDay;
     Time startTime;
     Time finishTime;
-
 };
 
 

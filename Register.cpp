@@ -4,7 +4,7 @@
 
 #include "Register.h"
 
-//functions
+// FUNCTIONS
 std::string Register::insert(Activity &a) {
     std::string returnMessage = " ";
 

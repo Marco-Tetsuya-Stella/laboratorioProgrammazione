@@ -30,20 +30,23 @@ private:
     void setSubRightPanel1Sizer();
 
 
-    // BUTTONS CONTOL  FUNCTIONS
+    // BUTTONS CONTOL FUNCTIONS
     void onLeftSaveButtonCliked(wxCommandEvent& evt);
     void onLeftDeleteDayButtonCliked(wxCommandEvent& evt);
     void onLeftDeleteNameButtonCliked(wxCommandEvent& evt);
     void onRightSearchButtonCliked(wxCommandEvent& evt);
     const std::string fromWxStringToString(wxTextCtrl* textCtrl);
 
-    //FONTS
+
+    // FONTS
     wxFont* mainFont;
     wxFont* leftPanelFont;
     wxFont* rightPanelFont;
 
+
     // SPLITTER
     wxSplitterWindow* splitter;
+
 
     // PANELS
     wxPanel* leftPanel;
@@ -52,6 +55,7 @@ private:
     wxPanel* subLeftPanel2 ;
     wxPanel* subRightPanel1;
     wxPanel* subRightPanel2;
+
 
     // LEFT PANEL CONTOLLABLE TEXT
     wxTextCtrl* leftControlYearText;
@@ -70,7 +74,6 @@ private:
     wxTextCtrl* leftControlDeleteActivityMonthText;
     wxTextCtrl* leftControlDeleteActivityDayText;
     wxTextCtrl* leftControlDeleteActivityNameText;
-
 
 
     // LEFT PANEL STATIC TEXT
@@ -94,11 +97,11 @@ private:
     wxStaticText* leftDeleteActivityNameText;
 
 
-
     // RIGHT PANEL CONTROLLABLE TEXT
     wxTextCtrl* rightControlYearText;
     wxTextCtrl* rightControlMonthText;
     wxTextCtrl* rightControlDayText;
+
 
     // RIGHT PANEL STATIC TEXT
     wxStaticText* rightHeaderText;
@@ -107,15 +110,16 @@ private:
     wxStaticText* rightDayText;
     wxStaticText* activityText;
 
+
     // LEFT PANEL BUTTONS
     wxButton* leftSaveButton;
     wxButton* leftDeleteDayButton;
     wxButton* leftDeleteNameButton;
 
 
-
     // RIGHT PANEL BUTTONS
     wxButton* rightSearchButton;
+
 
     // LEFT PANEL SIZERS
     wxBoxSizer* leftPanelSizer;
@@ -136,8 +140,6 @@ private:
     wxBoxSizer* subLeftPanel2HorizontalSizer3;
 
 
-
-
     // RIGHT PANEL SIZERS
     wxBoxSizer* rightPanelSizer;
     wxBoxSizer* subRightPanel1MainSizer;    // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
@@ -149,9 +151,9 @@ private:
     // STRING STREAM
     std::stringstream stringstream;
 
+
     // REGISTER
     Register activities;
-
 };
 
 

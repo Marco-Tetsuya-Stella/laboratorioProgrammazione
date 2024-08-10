@@ -198,6 +198,8 @@ void MainFrame::setSubLeftPanel1Sizer() {
     leftSaveButton = new wxButton(subLeftPanel1,wxID_ANY,"Save");
     subLeftPanel1MainSizer->Add(leftSaveButton,1,wxEXPAND | wxALL,10);
 
+
+
     // SET THE SIZER
     subLeftPanel1->SetSizer(subLeftPanel1MainSizer);
     subLeftPanel1MainSizer->SetSizeHints(subLeftPanel1);
@@ -249,6 +251,8 @@ void MainFrame::setSubRightPanel1Sizer() {
     rightSearchButton = new wxButton(subRightPanel1,wxID_ANY,"Search activities");
     subRightPanel1MainSizer->Add(rightSearchButton, 1,wxEXPAND | wxALL,2);
 
+
+
     // SET THE SIZER
     subRightPanel1->SetSizer(subRightPanel1MainSizer);
     subRightPanel1MainSizer->SetSizeHints(subRightPanel1);
@@ -257,7 +261,6 @@ void MainFrame::setSubRightPanel1Sizer() {
 
 
 void MainFrame::setSubLeftPanel2Sizer() {
-
     // SIZERS
     subLeftPanel2MainSizer = new wxBoxSizer(wxVERTICAL);                // the higest horizontal sizer is 1 the numbers will increase as the height of the sizer decreases
     subLeftPanel2HorizontalSizer1 = new wxBoxSizer(wxHORIZONTAL);
@@ -270,7 +273,7 @@ void MainFrame::setSubLeftPanel2Sizer() {
     leftDeleteActivityHeaderText = new wxStaticText(subLeftPanel2,wxID_ANY,"Delete the activities",wxDefaultPosition,wxDefaultSize,wxALIGN_CENTER_HORIZONTAL);
     leftDeleteActivityHeaderText->SetFont(*mainFont);
     leftDeleteActivityHeaderText->SetBackgroundColour(wxColor(153,255,255));
-subLeftPanel2MainSizer->Add(leftDeleteActivityHeaderText,0, wxEXPAND | wxALL,4);
+    subLeftPanel2MainSizer->Add(leftDeleteActivityHeaderText,0, wxEXPAND | wxALL,4);
 
 
 
@@ -309,6 +312,8 @@ subLeftPanel2MainSizer->Add(leftDeleteActivityHeaderText,0, wxEXPAND | wxALL,4);
     subLeftPanel2HorizontalSizer3->Add(leftDeleteDayButton,1,wxALL,1);
     subLeftPanel2HorizontalSizer3->Add(leftDeleteNameButton,1,wxALL,1);
     subLeftPanel2MainSizer->Add(subLeftPanel2HorizontalSizer3,1,wxEXPAND|wxALL,1);
+
+
 
     // SET THE SIZER
     subLeftPanel2->SetSizer(subLeftPanel2MainSizer);
@@ -413,6 +418,7 @@ void MainFrame::onRightSearchButtonCliked(wxCommandEvent(& evt)) {
     auto scrollablePanelSizer = new wxBoxSizer(wxVERTICAL);
 
     subRightPanel2Sizer->Add(panel,1,wxEXPAND);
+
 
     // HEADER TEXT
     auto activityHeadrText = new wxStaticText(panel, wxID_ANY, "Activities : ");

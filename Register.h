@@ -13,7 +13,7 @@
 
 class Register {
 public:
-    //functions
+    // FUNCTIONS
     std::string insert(Activity& a);
     std::multimap<Date,Activity>::iterator returnDay(Date& d);
     int showQuantity(Date& d);

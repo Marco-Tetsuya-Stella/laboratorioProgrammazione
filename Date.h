@@ -8,25 +8,24 @@
 #include <iostream>
 
 class Date {
-
 public:
     explicit Date(int y=0,int m=1,int d=1);
 
-    //setter and getter
-    void setYear(int y);
-    void setMonth(int m);
-    void setDay(int d);
+    // SETTER AND GETTER
+    void setYear(const int& y);
+    void setMonth(const int& m);
+    void setDay(const int& d);
 
-    int getYear() const;
-    int getMonth() const;
-    int getDay() const;
+    const int& getYear() const;
+    const int& getMonth() const;
+    const int& getDay() const;
 
-    //operators
+    // OPERATORS
     bool operator==(const Date& orig) const;
     bool operator<(const Date& orig) const;
 
 private:
-    //private functions
+    // PRIVATE FUNCTIONS
     void setThirtyDay(int d);
     void setThirtyOneDay(int d);
     void setFebruaryDay(int d);
