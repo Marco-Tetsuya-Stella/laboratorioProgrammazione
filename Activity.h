@@ -11,7 +11,7 @@
 class Activity {
 
 public:
-    Activity(const std::string& n, const std::string& d, const Date& sD ,const Time& sT, const Time& fT);
+    explicit Activity(const std::string& n, const std::string& d, const Date& sD ,const Time& sT, const Time& fT);
 
     //getter and setter
     const std::string &getName() const;
