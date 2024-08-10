@@ -4,13 +4,15 @@ add_subdirectory(./lib/googletest)
 set(gtest_SOURCE_DIR, ./lib/googletest/)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-set(TEST_SOURCE_FILES Tests.cpp
+set(TEST_SOURCE_FILES
         DateTest.cpp
         TimeTest.cpp
         ActivityTest.cpp
         RegisterTest.cpp
         TimeFixture.cpp
         DateFixture.cpp
-        ActivityFixture.cpp)
+        ActivityFixture.cpp
+        RegisterFixture.cpp
+        runAllTests.cpp)
 add_executable(runTests ${TEST_SOURCE_FILES})
 target_link_libraries(runTests gtest gtest_main core)
