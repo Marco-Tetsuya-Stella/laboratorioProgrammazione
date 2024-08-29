@@ -21,6 +21,8 @@ TEST(Activity,Constructor) {
     ASSERT_EQ(activity1.getFinishTime().getHour(),21);
     ASSERT_EQ(activity1.getFinishTime().getMinute(),23);
     ASSERT_EQ(activity1.getFinishTime().getSecond(),45);
+
+    ASSERT_THROW(Activity activity2(name,description,date,time2,time1),std::invalid_argument);
 }
 
 

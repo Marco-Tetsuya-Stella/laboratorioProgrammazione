@@ -26,30 +26,27 @@ TEST_F(TimeSuite,TestSetHour) {
     ASSERT_EQ(t->getHour(),0);
     t->setHour(23);
     ASSERT_EQ(t->getHour(),23);
-    t->setHour(24);
-    ASSERT_EQ(t->getHour(),-1);
-    t->setHour(-10);
-    ASSERT_EQ(t->getHour(),-1);
+
+    ASSERT_THROW(t->setHour(24),std::invalid_argument);
+    ASSERT_THROW(t->setHour(-10),std::invalid_argument);
 }
 
 TEST_F(TimeSuite,TestSetMinute) {
     ASSERT_EQ(t->getMinute(),0);
     t->setMinute(59);
     ASSERT_EQ(t->getMinute(),59);
-    t->setMinute(60);
-    ASSERT_EQ(t->getMinute(),-1);
-    t->setMinute(-10);
-    ASSERT_EQ(t->getMinute(),-1);
+
+    ASSERT_THROW(t->setMinute(60),std::invalid_argument);
+    ASSERT_THROW(t->setMinute(-10),std::invalid_argument);
 }
 
 TEST_F(TimeSuite,TestSetSecond) {
     ASSERT_EQ(t->getSecond(),0);
     t->setSecond(59);
     ASSERT_EQ(t->getSecond(),59);
-    t->setSecond(60);
-    ASSERT_EQ(t->getSecond(),-1);
-    t->setSecond(-10);
-    ASSERT_EQ(t->getSecond(),-1);
+
+    ASSERT_THROW(t->setSecond(60),std::invalid_argument);
+    ASSERT_THROW(t->setSecond(-10),std::invalid_argument);
 }
 
 TEST_F(TimeSuite,TestOperators) {

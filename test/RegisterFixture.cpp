@@ -16,36 +16,22 @@ protected:
 };
 
 TEST_F(RegisterSuite,TestInsert) {
-    Date date1(2000,1,1);
-    Date invalidDate(2013,45,-4);
+    Date date(2000,1,1);
     Time startTime(7,0,0);
-    Time invalidStartTime(-120,700,99);
     Time finishTime(8, 0, 0);
-    Time invalidFinishTime(24,60,-80);
-    std::string name1="name1";
-    std::string description1="description1";
-    std::string returnMessage="";
+    std::string name="name";
+    std::string description="description";
 
+    Activity activity1(name, description, date, startTime, finishTime);
+    r->insert(activity1);
+    ASSERT_EQ(r->showQuantity(date),1);
 
-    Activity timeInvalidActivity(name1, description1, date1, finishTime, startTime);
-    returnMessage = r->insert(timeInvalidActivity);
-    ASSERT_EQ(returnMessage,"The start time value must be less than the end time value. Insertion failed");
-
-    Activity activity1(name1, description1, date1, startTime, finishTime);
-    returnMessage = r->insert(activity1);
-    ASSERT_EQ(returnMessage,"Activity saved");
-
-    Activity dateInvalidActivity(name1,description1,invalidDate,startTime,finishTime);
-    returnMessage = r->insert(dateInvalidActivity);
-    ASSERT_EQ(returnMessage,"The value of day is invalid. Insertion failed");
-
-    Activity startTimeInvalidActivity(name1,description1,date1,invalidStartTime,finishTime);
-    returnMessage = r->insert(startTimeInvalidActivity);
-    ASSERT_EQ(returnMessage,"The value of start time is invalid. Insertion failed");
-
-    Activity finishTimeInvalidActivity(name1,description1,date1,startTime,invalidFinishTime);
-    returnMessage = r->insert(finishTimeInvalidActivity);
-    ASSERT_EQ(returnMessage,"The value of finish time is invalid. Insertion failed");
+    auto it = r->returnDay(date);
+    ASSERT_EQ(it->second.getName(),name);
+    ASSERT_EQ(it->second.getDescription(),description);
+    ASSERT_EQ(it->second.getStartDay(),date);
+    ASSERT_EQ(it->second.getStartTime(),startTime);
+    ASSERT_EQ(it->second.getFinishTime(),finishTime);
 }
 
 TEST_F(RegisterSuite,TestReturnDay) {
@@ -107,7 +93,6 @@ TEST_F(RegisterSuite,TestShowQuantity) {
 }
 
 TEST_F(RegisterSuite,TestDeleteDay) {
-    std::string returnMessage="";
     int quantity=0;
 
     Date date1(2000,1,1);
@@ -125,21 +110,17 @@ TEST_F(RegisterSuite,TestDeleteDay) {
     r->insert(activity2);
 
     quantity = r->showQuantity(date2);
-    returnMessage = r->deleteDay(date2);
     ASSERT_EQ(quantity,0);
-    ASSERT_EQ(returnMessage,"There isn't saved activity on that day");
+    ASSERT_THROW(r->deleteDay(date2),std::invalid_argument);
 
     quantity = r->showQuantity(date1);
-    returnMessage = r->deleteDay(date1);
     ASSERT_EQ(quantity,2);
-    ASSERT_EQ(returnMessage,"All activities of that day deleted");
-
+    r->deleteDay(date1);
     quantity = r->showQuantity(date1);
     ASSERT_EQ(quantity,0);
 }
 
 TEST_F(RegisterSuite,TestDeleteActivity) {
-    std::string returnMessage="";
     int quantity=0;
 
     Date date1(2000,1,1);
@@ -158,20 +139,16 @@ TEST_F(RegisterSuite,TestDeleteActivity) {
     r->insert(activity2);
 
     quantity = r->showQuantity(date2);
-    returnMessage = r->deleteActivity(date2,name3);
     ASSERT_EQ(quantity,0);
-    ASSERT_EQ(returnMessage,"There isn't saved activity on that day");
+    ASSERT_THROW(r->deleteActivity(date2,name3),std::invalid_argument);
 
     quantity = r->showQuantity(date1);
-    returnMessage = r->deleteActivity(date1,name3);
     ASSERT_EQ(quantity,2);
-    ASSERT_EQ(returnMessage,"There isn't activity with that name");
+    ASSERT_THROW(r->deleteActivity(date1,name3),std::invalid_argument);
 
     quantity = r->showQuantity(date1);
-    returnMessage = r->deleteActivity(date1,name2);
     ASSERT_EQ(quantity,2);
-    ASSERT_EQ(returnMessage,"Activity name2 deleted");
-
+    r->deleteActivity(date1,name2);
     quantity = r->showQuantity(date1);
     ASSERT_EQ(quantity,1);
 }

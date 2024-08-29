@@ -7,37 +7,23 @@ TEST(Date,Constructor) {
     ASSERT_EQ(date.getMonth(),10);
     ASSERT_EQ(date.getDay(),10);
 
-    date.setYear(-12);
-    date.setMonth(1);
-    date.setDay(1);
-    ASSERT_EQ(date.getYear(),-1);
-    ASSERT_EQ(date.getMonth(),-1);
-    ASSERT_EQ(date.getDay(),-1);
+    ASSERT_THROW(date.setYear(-12),std::invalid_argument);
 
     Date date1(2004,2,29);
     ASSERT_EQ(date1.getYear(),2004);
     ASSERT_EQ(date1.getMonth(),2);
     ASSERT_EQ(date1.getDay(),29);
 
-    Date date2(2003,2,29);
-    ASSERT_EQ(date2.getYear(),2003);
-    ASSERT_EQ(date2.getMonth(),2);
-    ASSERT_EQ(date2.getDay(),-1);
 
-    Date date3(2100,2,29);
-    ASSERT_EQ(date3.getYear(),2100);
-    ASSERT_EQ(date3.getMonth(),2);
-    ASSERT_EQ(date3.getDay(),-1);
+    ASSERT_THROW(Date date2(2003,2,29),std::invalid_argument);
+    ASSERT_THROW(Date date3(2100,2,29),std::invalid_argument);
 
     Date date4(01,01,01);
     ASSERT_EQ(date4.getYear(),01);
     ASSERT_EQ(date4.getMonth(),01);
     ASSERT_EQ(date4.getDay(),01);
 
-    Date date5(0,0,0);
-    ASSERT_EQ(date5.getYear(),0);
-    ASSERT_EQ(date5.getMonth(),-1);
-    ASSERT_EQ(date5.getDay(),-1);
+    ASSERT_THROW(Date date5(0,0,0),std::invalid_argument);
 
     Date date6(0);
     ASSERT_EQ(date6.getYear(),0);
@@ -45,7 +31,7 @@ TEST(Date,Constructor) {
     ASSERT_EQ(date6.getDay(),1);
 
     Date date7;
-    ASSERT_EQ(date7.getYear(),0);
+    ASSERT_EQ(date7.getYear(),2024);
     ASSERT_EQ(date7.getMonth(),1);
     ASSERT_EQ(date7.getDay(),1);
 

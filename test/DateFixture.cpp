@@ -16,7 +16,7 @@ protected:
 };
 
 TEST_F(DateSuite,TestConstructor) {
-    ASSERT_EQ(d->getYear(),0);
+    ASSERT_EQ(d->getYear(),2024);
     ASSERT_EQ(d->getMonth(),1);
     ASSERT_EQ(d->getDay(),1);
 }
@@ -24,20 +24,17 @@ TEST_F(DateSuite,TestConstructor) {
 TEST_F(DateSuite,TestSetYear) {
     d->setYear(2024);
     ASSERT_EQ(d->getYear(),2024);
-    d->setYear(-2024);
-    ASSERT_EQ(d->getYear(),-1);
+    ASSERT_THROW(d->setYear(-2024),std::invalid_argument);
 }
 
 TEST_F(DateSuite,TestSetMonth) {
-    d->setYear(2024);
+
     d->setMonth(12);
     ASSERT_EQ(d->getMonth(),12);
-    d->setMonth(13);
-    ASSERT_EQ(d->getMonth(),-1);
-    d->setMonth(0);
-    ASSERT_EQ(d->getMonth(),-1);
-    d->setMonth(-12);
-    ASSERT_EQ(d->getMonth(),-1);
+
+    ASSERT_THROW(d->setMonth(13),std::invalid_argument);
+    ASSERT_THROW(d->setMonth(0),std::invalid_argument);
+    ASSERT_THROW(d->setMonth(-12),std::invalid_argument);
 }
 
 TEST_F(DateSuite,TestSetDay) {
@@ -45,29 +42,24 @@ TEST_F(DateSuite,TestSetDay) {
     d->setMonth(1);
     d->setDay(31);
     ASSERT_EQ(d->getDay(),31);
-    d->setDay(32);
-    ASSERT_EQ(d->getDay(),-1);
-    d->setDay(0);
-    ASSERT_EQ(d->getDay(),-1);
-    d->setDay(-31);
-    ASSERT_EQ(d->getDay(),-1);
+
+    ASSERT_THROW(d->setDay(32),std::invalid_argument);
+    ASSERT_THROW(d->setDay(0),std::invalid_argument);
+    ASSERT_THROW(d->setDay(-31),std::invalid_argument);
 
     d->setMonth(4);
-    d->setDay(31);
-    ASSERT_EQ(d->getDay(),-1);
+    ASSERT_THROW(d->setDay(31),std::invalid_argument);
     d->setDay(30);
     ASSERT_EQ(d->getDay(),30);
 
     d->setMonth(2);
-    d->setDay(29);
-    ASSERT_EQ(d->getDay(),-1);
+    ASSERT_THROW(d->setDay(29),std::invalid_argument);
     d->setYear(2024);
     d->setDay(29);
     ASSERT_EQ(d->getDay(),29);
 
     d->setYear(1900);
-    d->setDay(29);
-    ASSERT_EQ(d->getDay(),-1);
+    ASSERT_THROW(d->setDay(29),std::invalid_argument);
 }
 
 TEST_F(DateSuite,TestOperators) {

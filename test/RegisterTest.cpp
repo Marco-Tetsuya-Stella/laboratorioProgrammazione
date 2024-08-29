@@ -4,36 +4,23 @@
 
 TEST(Register,Insert) {
     Date date(2000,1,1);
-    Date invalidDate(2013,45,-4);
     Time startTime(7,0,0);
-    Time invalidStartTime(-120,700,99);
     Time finishTime(8, 0, 0);
-    Time invalidFinishTime(24,60,-80);
     std::string name="name";
     std::string description="description";
 
     Register activities;
-    std::string returnMessage="";
 
-    Activity activity1(name, description, date, finishTime, startTime);
-    returnMessage = activities.insert(activity1);
-    ASSERT_EQ(returnMessage,"The start time value must be less than the end time value. Insertion failed");
+    Activity activity1(name, description, date, startTime, finishTime);
+    activities.insert(activity1);
+    ASSERT_EQ(activities.showQuantity(date),1);
 
-    Activity activity2(name, description, date, startTime, finishTime);
-    returnMessage = activities.insert(activity2);
-    ASSERT_EQ(returnMessage,"Activity saved");
-
-    Activity dateInvalidActivity(name,description,invalidDate,startTime,finishTime);
-    returnMessage = activities.insert(dateInvalidActivity);
-    ASSERT_EQ(returnMessage,"The value of day is invalid. Insertion failed");
-
-    Activity startTimeInvalidActivity(name,description,date,invalidStartTime,finishTime);
-    returnMessage = activities.insert(startTimeInvalidActivity);
-    ASSERT_EQ(returnMessage,"The value of start time is invalid. Insertion failed");
-
-    Activity finishTimeInvalidActivity(name,description,date,startTime,invalidFinishTime);
-    returnMessage = activities.insert(finishTimeInvalidActivity);
-    ASSERT_EQ(returnMessage,"The value of finish time is invalid. Insertion failed");
+    auto it = activities.returnDay(date);
+    ASSERT_EQ(it->second.getName(),name);
+    ASSERT_EQ(it->second.getDescription(),description);
+    ASSERT_EQ(it->second.getStartDay(),date);
+    ASSERT_EQ(it->second.getStartTime(),startTime);
+    ASSERT_EQ(it->second.getFinishTime(),finishTime);
 }
 
 TEST(Register,ReturnDay) {
@@ -112,15 +99,12 @@ TEST(Register,DeleteDay) {
     activities.insert(activity2);
 
     quantity = activities.showQuantity(date2);
-    returnMessage = activities.deleteDay(date2);
     ASSERT_EQ(quantity,0);
-    ASSERT_EQ(returnMessage,"There isn't saved activity on that day");
+    ASSERT_THROW(activities.deleteDay(date2),std::invalid_argument);
 
     quantity = activities.showQuantity(date1);
-    returnMessage = activities.deleteDay(date1);
     ASSERT_EQ(quantity,2);
-    ASSERT_EQ(returnMessage,"All activities of that day deleted");
-
+    activities.deleteDay(date1);
     quantity = activities.showQuantity(date1);
     ASSERT_EQ(quantity,0);
 }
@@ -146,20 +130,16 @@ TEST(Register,DeleteActivity) {
     activities.insert(activity2);
 
     quantity = activities.showQuantity(date2);
-    returnMessage = activities.deleteActivity(date2,name3);
     ASSERT_EQ(quantity,0);
-    ASSERT_EQ(returnMessage,"There isn't saved activity on that day");
+    ASSERT_THROW(activities.deleteActivity(date2,name3),std::invalid_argument);
 
     quantity = activities.showQuantity(date1);
-    returnMessage = activities.deleteActivity(date1,name3);
     ASSERT_EQ(quantity,2);
-    ASSERT_EQ(returnMessage,"There isn't activity with that name");
+    ASSERT_THROW(activities.deleteActivity(date1,name3),std::invalid_argument);
 
     quantity = activities.showQuantity(date1);
-    returnMessage = activities.deleteActivity(date1,name2);
     ASSERT_EQ(quantity,2);
-    ASSERT_EQ(returnMessage,"Activity name2 deleted");
-
+    activities.deleteActivity(date1,name2);
     quantity = activities.showQuantity(date1);
     ASSERT_EQ(quantity,1);
 }
