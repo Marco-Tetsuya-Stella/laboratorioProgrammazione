@@ -6,8 +6,15 @@
 
 
 Activity::Activity(const std::string &n, const std::string &d, const Date &sD, const Time &sT,
-                   const Time &fT): name(n) , description(d) , startDay(sD), startTime(sT) ,
-                                    finishTime(fT) {}
+                   const Time &fT): name(n) , description(d) , startDay(sD) {
+    if( sT < fT ) {
+        startTime = sT;
+        finishTime = fT;
+    }
+    else{
+        throw std::invalid_argument("The start time value must be less than the end time value");
+    }
+}
 
 
 

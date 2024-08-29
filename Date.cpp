@@ -15,8 +15,7 @@ Date::Date(int y, int m, int d) {
 // SETTER AND GETTER
 void Date::setYear(const int& y) {
     if(y<0) {
-        std::cout << " Year is invalid a default parameter will be applied " << std::endl;
-        year = -1;
+        throw std::invalid_argument("The year value is invalid");
     }
     else
     {
@@ -25,9 +24,8 @@ void Date::setYear(const int& y) {
 }
 
 void Date::setMonth(const int& m) {
-    if(m<1 or m>12 or year==-1) {
-        std::cout << " Month is invalid a default parameter will be applied " << std::endl;
-        month=-1;
+    if( m<1 or m>12 ) {
+        throw std::invalid_argument("The month value is invalid");
     }
     else
     {
@@ -37,16 +35,11 @@ void Date::setMonth(const int& m) {
 
 void Date::setDay(const int& d) {
     if( d<1 or d>31){
-        std::cout << " Day is invalid a default parameter will be applied " << std::endl;
-        day = -1;
+        throw std::invalid_argument("The day value is invalid");
     }
     else
     {
         switch (month) {
-            case -1:
-                std::cout<<" Month is invalid a default parameter for day will be applied " << std::endl;
-                day=-1;
-                break;
             case 1:
                 setThirtyOneDay(d);
                 break;
@@ -150,8 +143,7 @@ void Date::setThirtyDay(int d) {
     }
     else
     {
-        std::cout << " Day is invalid a default parameter will be applied " << std::endl;
-        day=-1;
+        throw std::invalid_argument("The day value is invalid");
     }
 }
 
@@ -173,8 +165,7 @@ void Date::setFebruaryDay(int d) {
         }
         else
         {
-            std::cout << " Day is invalid a default parameter will be applied " << std::endl;
-            day=-1;
+            throw std::invalid_argument("The day value is invalid");
         }
     }
     else
@@ -184,8 +175,7 @@ void Date::setFebruaryDay(int d) {
         }
         else
         {
-            std::cout << " Day is invalid a default parameter will be applied " << std::endl;
-            day=-1;
+            throw std::invalid_argument("The day value is invalid");
         }
     }
 }

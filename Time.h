@@ -5,6 +5,7 @@
 #ifndef ELABORATO_LABORATORIO_DI_PROGRAMMAZIONE_TIME_H
 #define ELABORATO_LABORATORIO_DI_PROGRAMMAZIONE_TIME_H
 #include <iostream>
+#include <stdexcept>
 
 class Time {
 public:

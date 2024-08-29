@@ -6,10 +6,11 @@
 #define ELABORATO_LABORATORIO_DI_PROGRAMMAZIONE_DATE_H
 
 #include <iostream>
+#include <stdexcept>
 
 class Date {
 public:
-    explicit Date(int y=0,int m=1,int d=1);
+    explicit Date(int y=2024,int m=1,int d=1);
 
     // SETTER AND GETTER
     void setYear(const int& y);
@@ -30,9 +31,9 @@ private:
     void setThirtyOneDay(int d);
     void setFebruaryDay(int d);
 
-    int year=0;
-    int month=1;
-    int day=1;
+    int year;
+    int month;
+    int day;
 };
 
 

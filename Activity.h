@@ -4,6 +4,7 @@
 
 #ifndef ELABORATO_LABORATORIO_DI_PROGRAMMAZIONE_ACTIVITY_H
 #define ELABORATO_LABORATORIO_DI_PROGRAMMAZIONE_ACTIVITY_H
+#include <stdexcept>
 #include "Date.h"
 #include "Time.h"
 

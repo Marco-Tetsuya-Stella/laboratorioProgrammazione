@@ -14,8 +14,7 @@ Time::Time(int h, int m, int s) {
 // SETTER AND GETTER
 void Time::setHour(const int& h) {
     if( h<0 or h>23 ) {
-        std::cout << " Hour is invalid a default parameter will be applied " << std::endl;
-        hour=-1;
+        throw std::invalid_argument("The hour value is invalid");
     }
     else
     {
@@ -25,8 +24,7 @@ void Time::setHour(const int& h) {
 
 void Time::setMinute(const int& m) {
     if( m<0 or m>59 ) {
-        std::cout << " Minute is invalid a default parameter will be applied " << std::endl;
-        minute=-1;
+        throw std::invalid_argument("The minute value is invalid");
     }
     else
     {
@@ -36,8 +34,7 @@ void Time::setMinute(const int& m) {
 
 void Time::setSecond(const int& s) {
     if( s<0 or s>59 ) {
-        std::cout << " Second is invalid a default parameter will be applied " << std::endl;
-        second=-1;
+        throw std::invalid_argument("The second value is invalid");
     }
     else
     {

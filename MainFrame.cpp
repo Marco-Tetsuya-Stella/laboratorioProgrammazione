@@ -337,37 +337,43 @@ void MainFrame::onLeftSaveButtonCliked(wxCommandEvent &evt) {
     int finishMinute = atoi(leftControlFinishMinuteText->GetValue());
     int finishSecond = atoi(leftControlFinishSecondText->GetValue());
 
-    Date date(year,month,day);
-    Time startTime(startHour,startMinute,startSecond);
-    Time finishTime(finishHour,finishMinute,finishSecond);
-
-    Activity activity(name,description,date,startTime,finishTime);
-
-    std::string inputMessage = activities.insert(activity);
-
-    wxMessageBox(inputMessage,
-                 "Information", wxOK | wxICON_INFORMATION);
+    try {
+        Date date(year, month, day);
+        Time startTime(startHour, startMinute, startSecond);
+        Time finishTime(finishHour, finishMinute, finishSecond);
+        Activity activity(name,description,date,startTime,finishTime);
+        activities.insert(activity);
+        wxMessageBox("Activity saved",
+                     "Information", wxOK | wxICON_INFORMATION);
+    }
+    catch (std::invalid_argument& e) {
+        wxMessageBox(e.what(),
+                     "Error", wxOK | wxICON_INFORMATION);
+    }
 }
 
 
 
 void MainFrame::onLeftDeleteDayButtonCliked(wxCommandEvent &evt) {
     // FIND THE ACTIVITIES
-    int y=0;
-    int m=0;
-    int d=0;
+    int y = 0;
+    int m = 0;
+    int d = 0;
 
     y = atoi(leftControlDeleteActivityYearText->GetValue());
     m = atoi(leftControlDeleteActivityMonthText->GetValue());
     d = atoi(leftControlDeleteActivityDayText->GetValue());
-    Date date(y,m,d);
-    std::string deleteMessage = activities.deleteDay(date);
-
-    wxMessageBox(deleteMessage,
-                 "Information", wxOK | wxICON_INFORMATION);
+    try {
+        Date date(y, m, d);
+        activities.deleteDay(date);
+        wxMessageBox("All activities of that day are deleted",
+                     "Information", wxOK | wxICON_INFORMATION);
+    }
+    catch (std::invalid_argument& e) {
+        wxMessageBox(e.what(),
+                     "Error", wxOK | wxICON_INFORMATION);
+    }
 }
-
-
 
 void MainFrame::onLeftDeleteNameButtonCliked(wxCommandEvent &evt) {
     // FIND THE ACTIVITIES
@@ -378,13 +384,17 @@ void MainFrame::onLeftDeleteNameButtonCliked(wxCommandEvent &evt) {
     y = atoi(leftControlDeleteActivityYearText->GetValue());
     m = atoi(leftControlDeleteActivityMonthText->GetValue());
     d = atoi(leftControlDeleteActivityDayText->GetValue());
-    Date date(y,m,d);
-    std::string name = fromWxStringToString(leftControlDeleteActivityNameText);
-
-    std::string deleteMessage = activities.deleteActivity(date,name);
-
-    wxMessageBox(deleteMessage,
-                 "Information", wxOK | wxICON_INFORMATION);
+    try {
+        Date date(y, m, d);
+        std::string name = fromWxStringToString(leftControlDeleteActivityNameText);
+        activities.deleteActivity(date, name);
+        wxMessageBox("Activity "+ name +" deleted",
+                     "Information", wxOK | wxICON_INFORMATION);
+    }
+    catch (std::invalid_argument& e) {
+        wxMessageBox(e.what(),
+                     "Error", wxOK | wxICON_INFORMATION);
+    }
 }
 
 

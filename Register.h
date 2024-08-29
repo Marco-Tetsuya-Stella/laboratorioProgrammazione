@@ -6,6 +6,7 @@
 #define ELABORATO_LABORATORIO_DI_PROGRAMMAZIONE_REGISTER_H
 #include <iostream>
 #include <map>
+#include <stdexcept>
 #include "Date.h"
 #include "Activity.h"
 #include <string>
@@ -14,11 +15,11 @@
 class Register {
 public:
     // FUNCTIONS
-    std::string insert(Activity& a);
+    void insert(Activity& a);
     std::multimap<Date,Activity>::iterator returnDay(Date& d);
     int showQuantity(Date& d);
-    std::string deleteDay(Date& d);
-    std::string deleteActivity(Date& d,const std::string& name);
+    void deleteDay(Date& d);
+    void deleteActivity(Date& d,const std::string& name);
 
 private:
     std::multimap<Date,Activity> activities;
