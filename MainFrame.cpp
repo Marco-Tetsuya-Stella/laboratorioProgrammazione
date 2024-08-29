@@ -248,7 +248,7 @@ void MainFrame::setSubRightPanel1Sizer() {
 
 
     // CREATE SEARCH BUTTON
-    rightSearchButton = new wxButton(subRightPanel1,wxID_ANY,"Search activities");
+    rightSearchButton = new wxButton(subRightPanel1,wxID_ANY,"Search");
     subRightPanel1MainSizer->Add(rightSearchButton, 1,wxEXPAND | wxALL,2);
 
 
@@ -405,56 +405,65 @@ void MainFrame::onRightSearchButtonCliked(wxCommandEvent(& evt)) {
     int m=0;
     int d=0;
 
-    y = atoi(rightControlYearText->GetValue());
-    m = atoi(rightControlMonthText->GetValue());
-    d = atoi(rightControlDayText->GetValue());
-    Date date(y,m,d);
-    std::multimap<Date,Activity>::iterator it = activities.returnDay(date);
-    int countedDayActivities = activities.showQuantity(date);
-
-    wxMessageBox("Finded activities : "+std::to_string(countedDayActivities),
-               "Information", wxOK | wxICON_INFORMATION);
+    try {
+        y = atoi(rightControlYearText->GetValue());
+        m = atoi(rightControlMonthText->GetValue());
+        d = atoi(rightControlDayText->GetValue());
+        Date date(y, m, d);
 
 
-    // STRINGSTREAM
-    stringstream.str("");
-    subRightPanel2->DestroyChildren();
-    auto panel = new wxScrolled<wxPanel>(subRightPanel2,wxID_ANY,wxDefaultPosition,wxSize(subRightPanel2->GetSize()));
-    panel->SetScrollRate(0,10);
+        std::multimap<Date,Activity>::iterator it = activities.returnDay(date);
+        int countedDayActivities = activities.showQuantity(date);
+
+        wxMessageBox("Finded activities : "+std::to_string(countedDayActivities),
+                     "Information", wxOK | wxICON_INFORMATION);
 
 
-    // SIZERS
-    subRightPanel2Sizer = new wxBoxSizer(wxVERTICAL);
-    auto scrollablePanelSizer = new wxBoxSizer(wxVERTICAL);
-
-    subRightPanel2Sizer->Add(panel,1,wxEXPAND);
-
-
-    // HEADER TEXT
-    auto activityHeadrText = new wxStaticText(panel, wxID_ANY, "Activities : ");
-    scrollablePanelSizer->Add(activityHeadrText,0,wxALL,5);
-
-
-    // WRITE ACTIVITIES LIST
-    for(auto start=it; start!= std::next(it,countedDayActivities); start++){
+        // STRINGSTREAM
         stringstream.str("");
-        stringstream <<" Name : " << start->second.getName() << "\n"
-                     <<" Start time : " << start->second.getStartTime().getHour() <<  " / " << start->second.getStartTime().getMinute()
-                     << " / " << start->second.getStartTime().getSecond() << "\n"
-                     <<" Finish time : " << start->second.getFinishTime().getHour() <<  " / " << start->second.getFinishTime().getMinute()
-                     << " / " << start->second.getFinishTime().getSecond() << "\n"
-                     << " Description : " << start->second.getDescription() << "\n \n";
+        subRightPanel2->DestroyChildren();
+        auto panel = new wxScrolled<wxPanel>(subRightPanel2,wxID_ANY,wxDefaultPosition,wxSize(subRightPanel2->GetSize()));
+        panel->SetScrollRate(0,10);
 
-        wxString t;
-        t = stringstream.str();
-        activityText = new wxStaticText(panel, wxID_ANY, t);
-        scrollablePanelSizer->Add(activityText, 0,wxALL,5);
+
+        // SIZERS
+        subRightPanel2Sizer = new wxBoxSizer(wxVERTICAL);
+        auto scrollablePanelSizer = new wxBoxSizer(wxVERTICAL);
+
+        subRightPanel2Sizer->Add(panel,1,wxEXPAND);
+
+
+        // HEADER TEXT
+        auto activityHeadrText = new wxStaticText(panel, wxID_ANY, "Activities : ");
+        scrollablePanelSizer->Add(activityHeadrText,0,wxALL,5);
+
+
+        // WRITE ACTIVITIES LIST
+        for(auto start=it; start!= std::next(it,countedDayActivities); start++){
+            stringstream.str("");
+            stringstream <<" Name : " << start->second.getName() << "\n"
+                         <<" Start time : " << start->second.getStartTime().getHour() <<  " / " << start->second.getStartTime().getMinute()
+                         << " / " << start->second.getStartTime().getSecond() << "\n"
+                         <<" Finish time : " << start->second.getFinishTime().getHour() <<  " / " << start->second.getFinishTime().getMinute()
+                         << " / " << start->second.getFinishTime().getSecond() << "\n"
+                         << " Description : " << start->second.getDescription() << "\n \n";
+
+            wxString t;
+            t = stringstream.str();
+            activityText = new wxStaticText(panel, wxID_ANY, t);
+            scrollablePanelSizer->Add(activityText, 0,wxALL,5);
+        }
+
+
+        // SET SIZERS
+        panel->SetSizer(scrollablePanelSizer);
+        subRightPanel2->SetSizer(subRightPanel2Sizer);
     }
+    catch (std::invalid_argument& e) {
+        wxMessageBox(e.what(),
+                     "Error", wxOK | wxICON_INFORMATION);
 
-
-    // SET SIZERS
-    panel->SetSizer(scrollablePanelSizer);
-    subRightPanel2->SetSizer(subRightPanel2Sizer);
+    }
 }
 
 
